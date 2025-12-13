@@ -1,0 +1,133 @@
+cat > 404.html <<'EOF'
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 • Necdet Şanlı</title>
+    <meta name="description" content="Page not found." />
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="layout">
+        <aside class="col-left" aria-label="Left navigation">
+          <img class="logo" src="./assets/gifs/me_glint.gif" alt="Necdet" />
+
+          <img
+            class="welcome-img"
+            src="./assets/gifs/welcome_glitter.gif"
+            width="220"
+            height="90"
+            alt="Welcome to My Personal Website!"
+          />
+
+          <div class="status-row">
+            <span class="status-label">Status:</span>
+            <img
+              class="status-icon"
+              src="./assets/gifs/online.gif"
+              width="68"
+              height="65"
+              alt="Online"
+            />
+          </div>
+
+          <nav class="nav" aria-label="Site links">
+            <a href="./index.html">Home</a><br />
+            <a href="./about.html">About</a><br />
+            <a href="./blog.html">Blog</a><br />
+            <a href="./links.html">Cool Sites</a><br />
+            <a href="./guestbook.html">Guestbook</a><br />
+          </nav>
+        </aside>
+
+        <main class="col-main" aria-label="Main content">
+          <div class="center header-stack">
+            <img
+              class="title-img"
+              src="./assets/gifs/necdet_scroll.png"
+              alt="Necdet Şanlı"
+            />
+            <img
+              src="./assets/gifs/under_construction.gif"
+              width="384"
+              height="145"
+              alt="Under construction"
+              style="
+                display: block;
+                margin: 14px auto 0 auto;
+                max-width: 100%;
+                height: auto;
+              "
+            />
+            <div class="box" style="max-width: 520px; margin: 14px auto 0 auto">
+              <div class="box-title">404</div>
+              <div class="tiny">
+                There is no such a page 😄
+                <a href="./index.html">Return to homepage</a>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <aside class="col-right" aria-label="Right sidebar">
+          <section class="box box-right">
+            <div class="box-title">Tip</div>
+            <div class="tiny">Back button is also an option.</div>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <footer class="winamp" role="contentinfo" aria-label="Winamp style player">
+      <div class="winamp-left">
+        <button
+          id="music-toggle"
+          type="button"
+          class="winamp-btn"
+          aria-label="Play/Pause"
+        >
+          ▶
+        </button>
+        <div class="winamp-eq" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="winamp-mid">
+        <div class="winamp-title">WINAMP</div>
+        <div class="winamp-marquee" aria-label="Now playing">
+          <div id="music-marquee" class="winamp-marquee-inner">
+            <span class="winamp-marquee-text"
+              >Now Playing: Turkish March.mp3 •</span
+            >
+            <span class="winamp-marquee-text"
+              >Now Playing: Turkish March.mp3 •</span
+            >
+            <span class="winamp-marquee-text"
+              >Now Playing: Turkish March.mp3 •</span
+            >
+          </div>
+        </div>
+        <div id="music-status" class="winamp-status" aria-live="polite"></div>
+      </div>
+
+      <div class="winamp-right">
+        <label class="winamp-vol">
+          VOL
+          <input id="music-vol" type="range" min="0" max="100" value="60" />
+        </label>
+      </div>
+    </footer>
+
+    <audio id="bg-audio" preload="metadata" loop autoplay>
+      <source src="./assets/audio/theme.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="./js/snow.js" defer></script>
+    <script src="./js/music.js" defer></script>
+  </body>
+</html>
