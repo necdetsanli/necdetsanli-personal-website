@@ -1,0 +1,74 @@
+﻿Necdet Şanlı
+                                                
+• me@necdetsanli.com • necdetsanli.com • linkedin.com/in/necdetsanli • github.com/necdetsanli • Turkey
+
+
+PROFESSIONAL EXPERIENCE
+Ulak Haberleşme, Turkey                                                        11/2023 -
+DevOps Engineer
+Contributed to a private, secure LTE project developed in collaboration with ASELSAN for the General Directorate of Security's new communication system.
+* Deployed, maintained, and orchestrated multiple Kubernetes clusters hosting monitoring tools, repositories, web apps and more. Deployed LTE core network components and MySQL clusters with ProxySQL.
+
+
+* Achieved the project’s SLA requirement of 99.9% uptime by implementing redundancy and load-balancing through Keepalived and NGINX, ensuring seamless failover between clusters.
+
+* Built and managed a comprehensive monitoring ecosystem using tools like Helm and Kustomize which combined Prometheus for metrics collection and Grafana for visualization, while using Loki and MinIO for log aggregation and long-term storage. Integrated various open-source tools such as SNMP collectors to gather VMware and infrastructure metrics. Automated key operational tasks like package uploads, backups, deployments, and configuration management through CronJobs and Ansible. 
+
+
+   * Designed and maintained Jenkins pipelines for CI/CD lifecycle, and implemented various plugins for Jenkins like GitLab and e-mail plugin. 
+
+
+   * Assisted in UI testing of the network management web app using Selenium. Additionally, monitored backend logs to identify and resolve bugs, and validated database operations by connecting directly to the databases.
+
+
+   * Customized Grafana’s interface to provide a fully Turkish-localized version, distributed as a private release. Enabled secure access using JWT and LDAP, and integrated SSO authentication. 
+
+
+   * Installed and configured the entire monitoring stack on air-gapped field machines with no Internet access. Delivered hands-on Grafana training to field support teams and conducted system demonstrations for the Presidency of Defense Industries (SSB) during acceptance testing.
+
+
+Ulak Haberleşme, Turkey                                                08/2025 - 10/2025
+C/C++ Developer Intern
+Built a high-performance UDP networking system for Linux that reliably sustains ≥100k packets/sec while serving 10+ concurrent clients. The project ships as a fully reproducible package with tests, docs, metrics, and an end-to-end demo.
+   * Used low-level Linux networking primitives (e.g., epoll, recvmmsg, sendmmsg) and careful buffer management to reduce system call overhead and latency.
+
+
+   * Implemented lock-free data structures and RAII-based resource management in modern C++ to ensure safe, efficient concurrency without data races or leaks.
+
+   * Exposed Prometheus-compatible metrics. Provided a starter Grafana dashboard.
+
+   * Delivered a comprehensive GoogleTest suite and LCOV enforcement with 100% line coverage. Also created a one-command E2E demo that builds Release, launches server + 10 clients at 10 kpps, and verifies ≥100 kpps.
+
+   * Authored Doxygen docs, a usage/tuning README, and Mermaid/PlantUML component/class/sequence diagrams.
+
+   * Packaged with CMake and Docker + optional docker-compose, plus GitHub Actions
+CI/CD for build & test, docs to Pages, and Docker image publishing to GHCR.
+
+
+Repkon, Turkey                                                        03/2023 - 08/2023
+C/C++ Developer 
+Developed C/C++ applications and tools for an industrial automation project, focusing on reliable services, UIs, and supporting utilities on Linux.
+      * Developed C++ services and tools to support an industrial automation project, delivering practical, production-ready software components for engineering teams.
+
+
+      * Implemented a Linux service  in C++ that monitored designated files or system events and triggered automated actions as part of the production workflow.
+
+      * Built an event-driven Qt/C++ GUI that converted and visualized system-specific numeric formats, helping engineers inspect and debug machine data more easily.
+
+
+         * Created terminal-based utilities using ncurses for quick interaction with system status and logs on Linux environments.
+
+
+         * Integrated third-party libraries such as SQLite, cJSON, RapidXML, hiredis and libcurl to handle serialization/deserialization, local data storage, configuration, and HTTP communication where needed.
+Tech Stack: Linux, Git, Bash, Docker, Kubernetes, AWS, Terraform, Ansible, Jenkins, Helm, Kustomize, Linkerd, Grafana, Prometheus, Loki, MinIO, HAProxy, Keepalived, Containerd, MySQL, ProxySQL, MongoDB, Redis, Wireshark, Postman, Selenium, NGINX, C/C++, Python, Java, Qt, ncurses, SQLite, cJSON, RapidXML, hiredis, libcurl, CMake, Doxygen, GoogleTest, UML
+
+
+Certificates & Badges: https://www.credly.com/users/necdet-sanli/
+
+
+Spoken Languages
+English C1 (IELTS General), German A1 
+
+
+Education
+Computer Engineering, Tarsus University        2021 – 2025        3.12
