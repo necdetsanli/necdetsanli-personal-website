@@ -1,19 +1,20 @@
+cat > projects.html <<'EOF'
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Cool Sites | Necdet Şanlı</title>
+    <title>Projects | Necdet Şanlı</title>
     <meta
       name="description"
-      content="A small collection of cool sites and links (retro vibes)."
+      content="Projects by Necdet Şanlı — software, ML, embedded systems, and more."
     />
     <meta name="author" content="Necdet Şanlı" />
     <meta name="robots" content="index,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    <link rel="canonical" href="https://www.necdetsanli.com/links.html" />
+    <link rel="canonical" href="https://www.necdetsanli.com/projects.html" />
     <link
       rel="sitemap"
       type="application/xml"
@@ -24,27 +25,45 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Necdet Şanlı" />
-    <meta property="og:title" content="Cool Sites | Necdet Şanlı" />
+    <meta property="og:title" content="Projects | Necdet Şanlı" />
     <meta
       property="og:description"
-      content="A small collection of cool sites and links (retro vibes)."
+      content="Projects by Necdet Şanlı — software, ML, embedded systems, and more."
     />
-    <meta property="og:url" content="https://www.necdetsanli.com/links.html" />
+    <meta
+      property="og:url"
+      content="https://www.necdetsanli.com/projects.html"
+    />
     <meta
       property="og:image"
       content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
     />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Cool Sites | Necdet Şanlı" />
+    <meta name="twitter:title" content="Projects | Necdet Şanlı" />
     <meta
       name="twitter:description"
-      content="A small collection of cool sites and links (retro vibes)."
+      content="Projects by Necdet Şanlı — software, ML, embedded systems, and more."
     />
     <meta
       name="twitter:image"
       content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
     />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Necdet Şanlı",
+        "url": "https://www.necdetsanli.com/",
+        "email": "mailto:me@necdetsanli.com",
+        "sameAs": [
+          "https://github.com/necdetsanli",
+          "https://www.linkedin.com/in/necdetsanli",
+          "https://www.donotghostme.com"
+        ]
+      }
+    </script>
 
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
@@ -95,19 +114,21 @@
               <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
             </a>
             <br />
-            <a href="./projects.html">
+            <a href="./projects.html" aria-current="page">
               Projects
               <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
             </a>
             <br />
-            <a href="./links.html" aria-current="page"
+            <a href="./links.html"
               >Cool Sites
-              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /> </a
-            ><br />
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
+            </a>
+            <br />
             <a href="./guestbook.html"
               >Guestbook
-              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /> </a
-            ><br />
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
+            </a>
+            <br />
           </nav>
 
           <div class="mini">
@@ -287,7 +308,7 @@
 
         <main class="col-main" aria-label="Main content">
           <div class="center header-stack">
-            <h1 class="sr-only">Cool Sites</h1>
+            <h1 class="sr-only">Projects</h1>
 
             <img
               class="title-img"
@@ -318,187 +339,344 @@
           />
 
           <section class="box">
-            <div class="box-title">Cool Sites</div>
+            <div class="box-title">Projects</div>
             <div class="tiny">
-              A few links I like. If you have suggestions, sign the
-              <a href="./guestbook.html">guestbook</a> ✨
+              A curated list of things I built — full-stack, systems, ML, and
+              embedded.
             </div>
           </section>
 
           <section class="box">
-            <div class="box-title">Dev / Linux</div>
+            <div class="box-title">
+              Do Not Ghost Me – Anonymous Recruitment Ghosting Tracker
+            </div>
+
+            <p class="tiny">
+              Do Not Ghost Me is an open-source, privacy-first platform that
+              collects anonymous reports about recruitment ghosting and
+              aggregates them into company-level statistics. The goal is to give
+              candidates more transparency about how companies behave during
+              hiring processes and to encourage more respectful communication
+              practices.
+            </p>
+
             <ul class="list">
               <li>
-                <a
-                  href="https://news.ycombinator.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Hacker News</a
-                >
+                Designed and implemented a full-stack web application using
+                Next.js (App Router) and TypeScript, with a PostgreSQL database
+                accessed via Prisma.
               </li>
               <li>
-                <a
-                  href="https://dev.to/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >dev.to</a
-                >
+                Built an anonymous reporting flow with structured fields (stage,
+                seniority, role category, country, days without reply) and a
+                public “Top companies” page that ranks companies by ghosting
+                reports with rich filtering.
               </li>
               <li>
-                <a
-                  href="https://lobste.rs/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Lobsters</a
-                >
+                Implemented a hardened API layer with strict Zod validation,
+                CSRF protection, salted IP hashing, honeypot fields, and per-IP
+                / per-company rate limiting to prevent abuse while avoiding
+                storage of raw IP addresses.
               </li>
               <li>
-                <a
-                  href="https://github.com/trending"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >GitHub Trending</a
-                >
+                Developed an admin dashboard for moderating reports (flagging,
+                soft delete, hard delete) while keeping public statistics based
+                only on active, non-deleted entries.
               </li>
               <li>
-                <a
-                  href="https://wiki.archlinux.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Arch Wiki</a
-                >
+                Set up a devcontainer-based local environment (Docker +
+                PostgreSQL) and reproducible scripts for database setup,
+                migrations, and realistic dummy data seeding.
               </li>
               <li>
-                <a
-                  href="https://man7.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Man Pages</a
-                >
+                Added a comprehensive testing setup with Vitest (unit &
+                integration tests) and Playwright (end-to-end tests), plus
+                linting, type-checking and CI-friendly verification scripts.
               </li>
               <li>
-                <a
-                  href="https://linux.die.net/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Linux Man Pages</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://kernel.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Linux Kernel</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://lwn.net/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >LWN</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://pubs.opengroup.org/onlinepubs/9699919799/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >POSIX</a
-                >
+                Documented the system with a detailed README, PRIVACY and
+                CONTRIBUTING guidelines, and JSDoc-based internal documentation
+                for core library modules.
               </li>
             </ul>
           </section>
 
           <section class="box">
-            <div class="box-title">Retro / Web</div>
+            <div class="box-title">
+              EyeRest – Windows Tray App for the 20–20–20 Rule
+            </div>
+
+            <p class="tiny">
+              EyeRest is a lightweight Windows tray application that helps users
+              follow the 20–20–20 rule for eye health (every 20 minutes, look at
+              something 20 feet away for 20 seconds). It runs quietly in the
+              notification area and shows periodic desktop notifications so
+              regular eye breaks become a natural part of screen-heavy workdays.
+            </p>
+
             <ul class="list">
               <li>
-                <a
-                  href="https://neocities.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Neocities</a
-                >
+                Built with C# and .NET Framework 4.8 as my first C#/.NET
+                project, focusing on a small, polished utility for everyday use.
               </li>
               <li>
-                <a
-                  href="https://www.wiby.me/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Wiby (retro search)</a
-                >
+                Uses a WinForms ApplicationContext and NotifyIcon to run as a
+                background tray application integrated into the Windows
+                notification area.
               </li>
               <li>
-                <a
-                  href="https://theoldnet.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >The Old Net</a
-                >
+                Relies on System.Threading.Timer to schedule recurring reminders
+                at 20-minute intervals in a resource-efficient way.
               </li>
               <li>
-                <a
-                  href="https://www.cameronsworld.net/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Cameron’s World</a
-                >
+                Displays Windows 10/11 toast notifications with a classic tray
+                balloon fallback to support older or restricted environments.
+              </li>
+              <li>
+                Includes a small configuration dialog that allows users to
+                enable or disable reminders for the current session without
+                restarting the app.
+              </li>
+              <li>
+                Open source on GitHub and shipped as an MSIX-packaged desktop
+                app on the Microsoft Store for easy installation and updates.
+              </li>
+              <li>
+                Additionally distributed via Chocolatey and winget, with both
+                package definitions created and actively maintained by me to
+                ensure smooth installs and upgrades.
+              </li>
+              <li>
+                Follows semantic versioning and includes thorough project
+                documentation, including README, LICENSE, CHANGELOG,
+                CONTRIBUTING guidelines, and a privacy policy.
+              </li>
+              <li>
+                Designed to be privacy-friendly: does not collect telemetry,
+                usage analytics, or any personal data.
               </li>
             </ul>
           </section>
 
           <section class="box">
-            <div class="box-title">Music</div>
+            <div class="box-title">
+              Automatic Expiration Date Extraction from Product Images
+            </div>
+
+            <p class="tiny">
+              Developed an image-processing pipeline that detects and reads
+              expiration dates from product images and stores the results in a
+              structured database. Implemented preprocessing steps (cropping,
+              noise reduction, contrast enhancement) to make date regions more
+              readable, then applied OCR to extract the expiration date text.
+              Designed basic validation logic to filter out invalid or ambiguous
+              dates and linked each extracted date to the corresponding product
+              record for later querying and analysis.
+            </p>
+
             <ul class="list">
               <li>
-                <a
-                  href="https://www.youtube.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >YouTube</a
-                >
+                Built an end-to-end workflow from raw product images to cleaned,
+                structured expiration-date records.
               </li>
               <li>
-                <a
-                  href="https://bandcamp.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Bandcamp</a
-                >
+                Used image preprocessing techniques to improve OCR accuracy on
+                low-quality or noisy images (e.g., blur, reflections, small
+                fonts).
               </li>
               <li>
-                <a
-                  href="https://soundcloud.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >SoundCloud</a
-                >
+                Implemented OCR-based date extraction and parsing to standardize
+                different date formats (DD/MM/YYYY, MM/YYYY, etc.).
+              </li>
+              <li>
+                Added validation and error-handling logic to detect invalid
+                dates and reduce false positives before saving to the database.
+              </li>
+              <li>
+                Designed a simple data model to associate each product with its
+                extracted expiration date for further reporting or alerts.
               </li>
             </ul>
           </section>
 
           <section class="box">
-            <div class="box-title">Misc</div>
+            <div class="box-title">
+              ESP32-Based Wi-Fi Room Intrusion Alert System
+            </div>
+
+            <p class="tiny">
+              Developed an ESP32-based alarm system, programmed with the Arduino
+              framework, that detects unauthorized entry into my room and sends
+              real-time notifications to my phone over Wi-Fi. The system
+              continuously monitors door/motion sensors and triggers an alert
+              when someone enters without my knowledge. Implemented basic
+              filtering and debouncing logic to reduce false positives and used
+              a simple cloud/API integration to deliver notifications to my
+              mobile device.
+            </p>
+
             <ul class="list">
               <li>
-                <a
-                  href="https://www.wikipedia.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Wikipedia</a
-                >
+                Designed and implemented a network-connected alarm system using
+                an ESP32 board and the Arduino ecosystem.
               </li>
               <li>
-                <a
-                  href="https://archive.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Internet Archive</a
-                >
+                Integrated door/motion sensors to monitor room access and detect
+                intrusions.
+              </li>
+              <li>
+                Programmed the ESP32 in C/C++ (Arduino framework) to process
+                sensor signals and decide when to trigger an alarm.
+              </li>
+              <li>
+                Sent intrusion alerts to my phone over Wi-Fi via a lightweight
+                web/API or messaging/notification service.
+              </li>
+              <li>
+                Tuned sensor thresholds and logic to minimize false alarms and
+                improve reliability in everyday use.
               </li>
             </ul>
+          </section>
+
+          <section class="box">
+            <div class="box-title">Fuzzy Logic Buy / Hold / Sell Signals</div>
+
+            <p class="tiny">
+              Developed a fuzzy logic–based decision support system that
+              analyzes historical stock price data and generates Buy / Hold /
+              Sell signals. Modeled market behavior with fuzzy sets and
+              membership functions (e.g., price trend, volatility, and volume)
+              and encoded trader heuristics as fuzzy rules. Implemented the
+              inference engine and defuzzification in Python/MATLAB and
+              backtested the strategy on real market data to evaluate its
+              performance against simple baseline strategies.
+            </p>
+
+            <ul class="list">
+              <li>
+                Designed a rule-based fuzzy inference system to transform noisy
+                market inputs into interpretable trading signals.
+              </li>
+              <li>
+                Defined and tuned fuzzy sets, membership functions, and rule
+                base to reflect common trading intuition.
+              </li>
+              <li>
+                Implemented data preprocessing, signal generation, and
+                backtesting pipeline using Python/MATLAB.
+              </li>
+              <li>
+                Focused on explainability by making the reasoning behind each
+                Buy/Hold/Sell recommendation transparent.
+              </li>
+            </ul>
+          </section>
+
+          <section class="box">
+            <div class="box-title">
+              Real Estate Price Estimation & Fair-Price Classification
+              (Istanbul)
+            </div>
+
+            <p class="tiny">
+              Built a machine learning model on a real-estate dataset of
+              Istanbul apartments containing features such as location, square
+              meters, number of rooms, and floor level. The system predicts the
+              expected market price of a property and, given a listing price,
+              classifies it as underpriced, fair, or overpriced. Focused on
+              cleaning the dataset, engineering meaningful features, and
+              evaluating model performance with appropriate regression and
+              classification metrics.
+            </p>
+
+            <ul class="list">
+              <li>
+                Collected and cleaned structured housing data including
+                district/neighborhood, size (m²), room count, and floor
+                information.
+              </li>
+              <li>
+                Engineered features (e.g., location encoding, floor category,
+                price per m²) to improve model performance and interpretability.
+              </li>
+              <li>
+                Trained and evaluated regression models to estimate the fair
+                market price of a given apartment.
+              </li>
+              <li>
+                Built a classification layer that compares the predicted price
+                with the actual listing price to flag properties as underpriced,
+                fair, or overpriced.
+              </li>
+              <li>
+                Analyzed model performance using metrics such as MAE/RMSE for
+                regression and accuracy/precision/recall for the classification
+                task.
+              </li>
+            </ul>
+          </section>
+
+          <section class="box">
+            <div class="box-title">
+              Sentiment Analysis of User Comments with Weka
+            </div>
+
+            <p class="tiny">
+              Built a sentiment analysis pipeline on a dataset of user comments
+              to automatically classify each comment as positive or negative.
+              Used Weka to handle data preprocessing, feature extraction, model
+              training, and evaluation. Compared multiple machine learning
+              algorithms (e.g., Naive Bayes, Decision Trees, SVM) and tuned
+              hyperparameters to improve classification performance based on
+              metrics such as accuracy, precision, recall, and confusion
+              matrices.
+            </p>
+
+            <ul class="list">
+              <li>
+                Cleaned and preprocessed raw text data (tokenization, stop-word
+                removal, basic normalization).
+              </li>
+              <li>
+                Transformed comments into numerical feature vectors using
+                bag-of-words / TF-IDF representations in Weka.
+              </li>
+              <li>
+                Trained and compared multiple supervised learning models for
+                binary sentiment classification.
+              </li>
+              <li>
+                Evaluated model performance and selected the best-performing
+                classifier based on validation results.
+              </li>
+              <li>
+                Interpreted common patterns in misclassified samples to
+                understand model limitations and data quality.
+              </li>
+            </ul>
+          </section>
+
+          <section class="box">
+            <div class="box-title">Local / GMT</div>
+
+            <form
+              id="clock-form"
+              class="clock"
+              action="#"
+              method="get"
+              novalidate
+            >
+              <label class="clock-row">
+                <span class="clock-label">Local:</span>
+                <input id="clock-local" type="text" readonly />
+              </label>
+
+              <label class="clock-row">
+                <span class="clock-label">GMT:</span>
+                <input id="clock-gmt" type="text" readonly />
+              </label>
+            </form>
           </section>
 
           <div class="between-extras-winamp center" aria-hidden="true">
@@ -515,19 +693,29 @@
           <section class="box box-right">
             <div class="box-title">Cool stuff</div>
             <div class="tiny">
-              <a href="https://www.donotghostme.com" rel="me">Do Not Ghost Me</a
+              <a
+                href="https://www.donotghostme.com"
+                rel="me noopener noreferrer"
+                >Do Not Ghost Me</a
               ><br />
-              <a href="https://github.com/necdetsanli/EyeRest" rel="me"
-                >EyeRest</a
+              <a
+                href="https://github.com/necdetsanli"
+                rel="me noopener noreferrer"
+                >My GitHub</a
               ><br />
-              <a href="https://github.com/necdetsanli" rel="me">My GitHub</a
-              ><br />
-              <a href="https://www.linkedin.com/in/necdetsanli" rel="me"
+              <a
+                href="https://www.linkedin.com/in/necdetsanli"
+                rel="me noopener noreferrer"
                 >My LinkedIn</a
               ><br />
-              <a href="https://www.youtube.com/watch?v=EVPo57xgRY4">My Song</a
+              <a
+                href="https://www.youtube.com/watch?v=EVPo57xgRY4"
+                rel="noopener noreferrer"
+                >My Song</a
               ><br />
-              <a href="https://www.youtube.com/watch?v=PMjKHqUPpxk"
+              <a
+                href="https://www.youtube.com/watch?v=PMjKHqUPpxk"
+                rel="noopener noreferrer"
                 >My Cover Song</a
               ><br />
             </div>
@@ -691,3 +879,4 @@
     <script src="./js/stats.js" defer></script>
   </body>
 </html>
+EOF
