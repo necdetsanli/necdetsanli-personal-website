@@ -1,12 +1,76 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Guestbook • Necdet Şanlı</title>
-    <meta name="description" content="Guestbook page (under construction)." />
+
+    <title>Guestbook | Necdet Şanlı</title>
+    <meta
+      name="description"
+      content="Sign my guestbook — leave a message on Necdet Şanlı’s retro 2000s website."
+    />
+    <meta name="author" content="Necdet Şanlı" />
+    <meta name="robots" content="index,follow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <link rel="canonical" href="https://www.necdetsanli.com/guestbook.html" />
+    <link
+      rel="sitemap"
+      type="application/xml"
+      title="Sitemap"
+      href="/sitemap.xml"
+    />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Necdet Şanlı" />
+    <meta property="og:title" content="Guestbook | Necdet Şanlı" />
+    <meta
+      property="og:description"
+      content="Sign my guestbook — leave a message on Necdet Şanlı’s retro 2000s website."
+    />
+    <meta
+      property="og:url"
+      content="https://www.necdetsanli.com/guestbook.html"
+    />
+    <meta
+      property="og:image"
+      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Guestbook | Necdet Şanlı" />
+    <meta
+      name="twitter:description"
+      content="Sign my guestbook — leave a message on Necdet Şanlı’s retro 2000s website."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+    />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        base-uri 'none';
+        frame-ancestors 'none';
+        form-action 'self';
+        img-src 'self' https: data:;
+        style-src 'self';
+        script-src 'self' https://challenges.cloudflare.com;
+        frame-src https://challenges.cloudflare.com;
+        connect-src 'self' https://necdetsanli-guestbook.sanlinecdet97.workers.dev https://challenges.cloudflare.com;
+      "
+    />
+
     <link rel="stylesheet" href="./css/styles.css" />
+
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
   </head>
 
   <body>
@@ -14,6 +78,7 @@
       <div class="layout">
         <aside class="col-left" aria-label="Left navigation">
           <img class="logo" src="./assets/gifs/me_glint.gif" alt="Necdet" />
+
           <img
             class="welcome-img"
             src="./assets/gifs/welcome_glitter.gif"
@@ -41,11 +106,34 @@
           />
 
           <nav class="nav" aria-label="Site links">
-            <a href="./index.html">Home</a><br />
-            <a href="./about.html">About</a><br />
-            <a href="./blog.html">Blog</a><br />
-            <a href="./links.html">Cool Sites</a><br />
-            <a href="./guestbook.html">Guestbook</a><br />
+            <a href="./home.html"
+              >Home
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /></a
+            ><br />
+            <a href="./about.html"
+              >About
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /></a
+            ><br />
+            <a href="./blog.html">
+              Blog
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
+            </a>
+            <br />
+            <a href="./projects.html">
+              Projects
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
+            </a>
+            <br />
+            <a href="./links.html"
+              >Cool Sites
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
+            </a>
+            <br />
+            <a href="./guestbook.html" aria-current="page"
+              >Guestbook
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
+            </a>
+            <br />
           </nav>
 
           <div class="mini">
@@ -55,47 +143,343 @@
                 width="50"
                 height="50"
                 alt="Digital Angel"
+                loading="lazy"
               />
               <img
                 src="./assets/gifs/sk_hackers.gif"
                 width="70"
                 height="70"
                 alt="SK Hackers"
+                loading="lazy"
               />
               <img
                 src="./assets/gifs/hacker.gif"
                 width="70"
                 height="70"
                 alt="Hacker"
+                loading="lazy"
               />
               <img
                 src="./assets/gifs/programmer.gif"
                 width="50"
                 height="50"
                 alt="Programmer"
+                loading="lazy"
               />
+              <img
+                src="./assets/gifs/tux.gif"
+                width="50"
+                height="50"
+                alt="Tux"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="side-section">
+              <div class="nav-title">Best viewed in</div>
+              <div class="buttons-grid">
+                <img
+                  src="./assets/gifs/best_viewed_ie.gif"
+                  width="88"
+                  height="31"
+                  alt="Best viewed in Internet Explorer"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/best_viewed_netscape.gif"
+                  width="88"
+                  height="31"
+                  alt="Best viewed in Netscape"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/best1024.gif"
+                  width="88"
+                  height="31"
+                  alt="Best viewed in 1024x768"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="side-section">
+              <div class="nav-title">Made with</div>
+              <div class="buttons-grid">
+                <img
+                  src="./assets/gifs/made_with_html.gif"
+                  width="88"
+                  height="31"
+                  alt="Made with HTML"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/css.gif"
+                  width="88"
+                  height="31"
+                  alt="Made with CSS"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/made_with_vim.gif"
+                  width="88"
+                  height="31"
+                  alt="Made with Vim"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/madewithlove.gif"
+                  width="88"
+                  height="31"
+                  alt="Made with Love"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/coffee.gif"
+                  width="88"
+                  height="31"
+                  alt="Made with Coffee"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="side-section">
+              <div class="nav-title">Valid</div>
+              <div class="buttons-grid">
+                <img
+                  src="./assets/gifs/valid_html5.gif"
+                  width="88"
+                  height="31"
+                  alt="Valid HTML"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/valid_css.gif"
+                  width="88"
+                  height="31"
+                  alt="Valid CSS"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="side-section">
+              <div class="nav-title">Blinkies</div>
+              <div class="blinkies-row">
+                <img
+                  src="./assets/gifs/0222-construction.gif"
+                  alt="Construction"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/0116-debian.gif"
+                  alt="Debian"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/toomanytabs.gif"
+                  alt="Too many tabs"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/bekindtoyourcomputer.gif"
+                  alt="Be kind to your computer"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/needmorecoffee.gif"
+                  alt="Need more coffee"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/computerconnect.gif"
+                  alt="Computer connection"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/wakeupneo.gif"
+                  alt="Wake up Neo"
+                  loading="lazy"
+                />
+                <img
+                  src="./assets/gifs/matrixhasyou.gif"
+                  alt="The Matrix has you"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </aside>
 
         <main class="col-main" aria-label="Main content">
           <div class="center header-stack">
+            <h1
+              style="
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+              "
+            >
+              Guestbook | Necdet Şanlı
+            </h1>
+
             <img
               class="title-img"
               src="./assets/gifs/necdet_scroll.png"
               alt="Necdet Şanlı"
             />
+
             <img
-              src="./assets/gifs/under_construction.gif"
-              width="384"
-              height="145"
+              class="welcome-main"
+              src="./assets/gifs/welcome.gif"
+              alt="Welcome"
+            />
+
+            <img
+              class="uc-strip"
+              src="./assets/gifs/under_construction_strip.gif"
+              width="574"
+              height="51"
               alt="Under construction"
-              style="
-                display: block;
-                margin: 14px auto 0 auto;
-                max-width: 100%;
-                height: auto;
-              "
+            />
+          </div>
+
+          <img
+            class="divider-img divider-main"
+            src="./assets/gifs/christmas_lights.gif"
+            alt=""
+            aria-hidden="true"
+          />
+
+          <section class="box">
+            <div class="box-title">Guestbook</div>
+
+            <p class="tiny">Leave a message below. No HTML, just vibes.</p>
+
+            <form id="guestbook-form" class="guestbook-form" novalidate>
+              <label class="guestbook-field">
+                <span class="guestbook-label">Name</span>
+                <input
+                  id="gb-name"
+                  name="name"
+                  class="guestbook-input"
+                  type="text"
+                  inputmode="text"
+                  autocomplete="nickname"
+                  maxlength="40"
+                  required
+                />
+              </label>
+
+              <label class="guestbook-field">
+                <span class="guestbook-label">Website (optional)</span>
+                <input
+                  id="gb-website"
+                  name="website"
+                  class="guestbook-input"
+                  type="url"
+                  inputmode="url"
+                  autocomplete="url"
+                  maxlength="200"
+                  placeholder="https://example.com"
+                />
+              </label>
+
+              <label class="guestbook-field">
+                <span class="guestbook-label">Message</span>
+                <textarea
+                  id="gb-message"
+                  name="message"
+                  class="guestbook-textarea"
+                  rows="5"
+                  maxlength="500"
+                  required
+                ></textarea>
+              </label>
+
+              <label class="hp" aria-hidden="true">
+                Company
+                <input
+                  id="gb-company"
+                  name="company"
+                  type="text"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </label>
+
+              <div class="guestbook-field">
+                <span class="guestbook-label">Anti-spam</span>
+                <div
+                  class="cf-turnstile"
+                  data-sitekey="0x4AAAAAACGmCRi-NDKBxy-9"
+                  data-theme="light"
+                ></div>
+              </div>
+
+              <div class="guestbook-actions">
+                <button id="gb-submit" type="submit" class="guestbook-btn">
+                  Sign!
+                </button>
+                <span
+                  id="gb-status"
+                  class="guestbook-status"
+                  aria-live="polite"
+                ></span>
+              </div>
+            </form>
+          </section>
+
+          <section class="box">
+            <div class="box-title">Entries</div>
+            <div id="guestbook-entries" class="guestbook-entries">
+              <div class="tiny">Loading...</div>
+            </div>
+          </section>
+
+          <section class="box">
+            <div class="box-title">Local / GMT</div>
+
+            <form
+              id="clock-form"
+              class="clock"
+              action="#"
+              method="get"
+              novalidate
+            >
+              <label class="clock-row">
+                <span class="clock-label">Local:</span>
+                <input id="clock-local" type="text" readonly />
+              </label>
+
+              <label class="clock-row">
+                <span class="clock-label">GMT:</span>
+                <input id="clock-gmt" type="text" readonly />
+              </label>
+            </form>
+          </section>
+
+          <noscript>
+            <section class="box">
+              <div class="box-title">JavaScript disabled</div>
+              <div class="tiny">
+                Guestbook needs JavaScript to load and submit entries.
+              </div>
+            </section>
+          </noscript>
+
+          <div class="between-extras-winamp center" aria-hidden="true">
+            <img
+              class="pixel"
+              src="./assets/gifs/fireplace.gif"
+              alt=""
+              loading="lazy"
             />
           </div>
         </main>
@@ -104,17 +488,122 @@
           <section class="box box-right">
             <div class="box-title">Cool stuff</div>
             <div class="tiny">
-              <a href="#">Interactive Magic</a><br />
-              <a href="#">Math Baseball</a><br />
-              <a href="#">Space Kids</a><br />
+              <a href="https://www.donotghostme.com" rel="me">Do Not Ghost Me</a
+              ><br />
+              <a href="https://github.com/necdetsanli/EyeRest" rel="me"
+                >EyeRest</a
+              ><br />
+              <a href="https://github.com/necdetsanli" rel="me">My GitHub</a
+              ><br />
+              <a href="https://www.linkedin.com/in/necdetsanli" rel="me"
+                >My LinkedIn</a
+              ><br />
+              <a href="https://www.youtube.com/watch?v=EVPo57xgRY4">My Song</a
+              ><br />
+              <a href="https://www.youtube.com/watch?v=PMjKHqUPpxk"
+                >My Cover Song</a
+              ><br />
             </div>
           </section>
 
           <section class="box box-right">
-            <div class="box-title">Learning Aids</div>
+            <div class="box-title">Under construction</div>
             <div class="tiny">
-              <a href="#">Encyclopedia</a><br />
-              <a href="#">Dictionary</a><br />
+              <a href="#">Under construction</a><br />
+              <a href="#">Under construction</a><br />
+            </div>
+          </section>
+
+          <section class="box box-right">
+            <div class="box-title">Awards</div>
+            <div class="buttons-grid">
+              <img
+                src="./assets/gifs/cool_site_award.gif"
+                width="88"
+                height="31"
+                alt="Cool site award"
+                loading="lazy"
+              />
+              <img
+                src="./assets/gifs/best_site.gif"
+                width="88"
+                height="31"
+                alt="Best site"
+                loading="lazy"
+              />
+              <img
+                src="./assets/gifs/golden_crown.gif"
+                width="88"
+                height="31"
+                alt="Golden crown"
+                loading="lazy"
+              />
+              <img
+                src="./assets/gifs/worlds_best_site.gif"
+                width="88"
+                height="31"
+                alt="World's best site"
+                loading="lazy"
+              />
+            </div>
+          </section>
+
+          <section class="box box-right">
+            <div class="box-title">Site stats</div>
+
+            <dl class="stats">
+              <div class="stats-row">
+                <dt>You're visitor #</dt>
+                <dd><span id="visitor-count">...</span></dd>
+              </div>
+
+              <div class="stats-row">
+                <dt>Last updated:</dt>
+                <dd><span id="last-updated">...</span></dd>
+              </div>
+
+              <div class="stats-row">
+                <dt>Hosted on:</dt>
+                <dd>GitHub Pages</dd>
+              </div>
+
+              <div class="stats-row">
+                <dt>Best viewed:</dt>
+                <dd>1024×768</dd>
+              </div>
+
+              <div class="stats-row">
+                <dt>Timezone:</dt>
+                <dd>GMT+3</dd>
+              </div>
+            </dl>
+
+            <div class="center tiny">
+              <a
+                class="guestbook-cta"
+                href="./guestbook.html"
+                aria-label="Go to guestbook"
+              >
+                <img
+                  class="pixel"
+                  src="./assets/gifs/sign_my_guestbook.gif"
+                  width="88"
+                  height="31"
+                  alt="Sign my guestbook"
+                  loading="lazy"
+                />
+              </a>
+
+              <a href="mailto:me@necdetsanli.com" aria-label="Email me">
+                <img
+                  class="pixel"
+                  src="./assets/gifs/email_me.gif"
+                  width="88"
+                  height="31"
+                  alt="Email me"
+                  loading="lazy"
+                />
+              </a>
             </div>
           </section>
         </aside>
@@ -131,6 +620,7 @@
         >
           ▶
         </button>
+
         <div class="winamp-eq" aria-hidden="true">
           <span></span><span></span><span></span><span></span><span></span>
         </div>
@@ -138,6 +628,7 @@
 
       <div class="winamp-mid">
         <div class="winamp-title">WINAMP</div>
+
         <div class="winamp-marquee" aria-label="Now playing">
           <div id="music-marquee" class="winamp-marquee-inner">
             <span class="winamp-marquee-text"
@@ -151,6 +642,7 @@
             >
           </div>
         </div>
+
         <div id="music-status" class="winamp-status" aria-live="polite"></div>
       </div>
 
@@ -169,5 +661,7 @@
     <script src="./js/clock.js" defer></script>
     <script src="./js/snow.js" defer></script>
     <script src="./js/music.js" defer></script>
+    <script src="./js/stats.js" defer></script>
+    <script src="./js/guestbook.js" defer></script>
   </body>
 </html>

@@ -2,6 +2,7 @@
 .DS_Store
 Thumbs.db
 .vscode/
+!.vscode/settings.json
 .idea/
 
 # Logs
@@ -15,3 +16,6 @@ build/
 # Local env (just in case)
 .env
 .env.*
+
+# Cloudflare
+worker/

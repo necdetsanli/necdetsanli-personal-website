@@ -4,43 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>404 • Necdet Şanlı</title>
-    <meta name="description" content="Page not found." />
+    <title>Admin | Guestbook</title>
+    <meta name="description" content="Guestbook admin panel (private)." />
     <meta name="author" content="Necdet Şanlı" />
     <meta name="robots" content="noindex,nofollow" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="referrer" content="no-referrer" />
 
-    <link rel="canonical" href="https://www.necdetsanli.com/404.html" />
-    <link
-      rel="sitemap"
-      type="application/xml"
-      title="Sitemap"
-      href="/sitemap.xml"
-    />
-
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Necdet Şanlı" />
-    <meta property="og:title" content="404 • Necdet Şanlı" />
-    <meta property="og:description" content="Page not found." />
-    <meta property="og:url" content="https://www.necdetsanli.com/404.html" />
-    <meta
-      property="og:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
-    />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="404 • Necdet Şanlı" />
-    <meta name="twitter:description" content="Page not found." />
-    <meta
-      name="twitter:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
-    />
-
+    <link rel="canonical" href="https://www.necdetsanli.com/admin.html" />
     <link rel="stylesheet" href="./css/styles.css" />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        base-uri 'none';
+        object-src 'none';
+        frame-ancestors 'none';
+        form-action 'self';
+        img-src 'self' https: data:;
+        style-src 'self';
+        script-src 'self';
+        connect-src 'self' https://necdetsanli-guestbook.sanlinecdet97.workers.dev;
+        media-src 'self';
+        upgrade-insecure-requests;
+      "
+    />
   </head>
 
-  <body>
+  <body
+    data-api-base="https://necdetsanli-guestbook.sanlinecdet97.workers.dev/"
+  >
     <div class="page">
       <div class="layout">
         <aside class="col-left" aria-label="Left navigation">
@@ -93,12 +86,14 @@
             <br />
             <a href="./links.html"
               >Cool Sites
-              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /> </a
-            ><br />
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
+            </a>
+            <br />
             <a href="./guestbook.html"
               >Guestbook
-              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /> </a
-            ><br />
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
+            </a>
+            <br />
           </nav>
 
           <div class="mini">
@@ -278,7 +273,21 @@
 
         <main class="col-main" aria-label="Main content">
           <div class="center header-stack">
-            <h1 class="sr-only">404</h1>
+            <h1
+              style="
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+              "
+            >
+              Admin | Guestbook
+            </h1>
 
             <img
               class="title-img"
@@ -301,15 +310,6 @@
             />
           </div>
 
-          <div class="center" style="margin: 10px 0 0 0">
-            <img
-              src="./assets/gifs/are_you_lost.gif"
-              alt="Are you lost?"
-              loading="lazy"
-              style="max-width: 100%; height: auto"
-            />
-          </div>
-
           <img
             class="divider-img divider-main"
             src="./assets/gifs/christmas_lights.gif"
@@ -318,16 +318,58 @@
           />
 
           <section class="box">
-            <div class="box-title">404</div>
-            <div class="tiny">
-              There is no such page 😄<br />
-              <a href="./home.html">Return to homepage</a>
-            </div>
+            <div class="box-title">Admin login</div>
+
+            <form id="admin-auth" class="guestbook-form" novalidate>
+              <label class="guestbook-field">
+                <span class="guestbook-label">Admin token</span>
+                <input
+                  id="admin-token"
+                  class="guestbook-input"
+                  type="password"
+                  inputmode="text"
+                  autocomplete="off"
+                  placeholder="Paste GB_ADMIN_TOKEN"
+                  required
+                />
+              </label>
+
+              <div class="guestbook-actions">
+                <button id="admin-save" type="submit" class="guestbook-btn">
+                  Save token
+                </button>
+                <button id="admin-logout" type="button" class="guestbook-btn">
+                  Clear
+                </button>
+                <span
+                  id="admin-status"
+                  class="guestbook-status"
+                  aria-live="polite"
+                ></span>
+              </div>
+            </form>
           </section>
 
           <section class="box">
-            <div class="box-title">Tip</div>
-            <div class="tiny">Back button is also an option.</div>
+            <div class="box-title">Pending entries</div>
+
+            <div class="guestbook-actions">
+              <button id="admin-refresh" type="button" class="guestbook-btn">
+                Refresh
+              </button>
+              <button id="admin-loadmore" type="button" class="guestbook-btn">
+                Load more
+              </button>
+              <span
+                id="admin-list-status"
+                class="guestbook-status"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <div id="admin-entries" class="guestbook-entries">
+              <div class="tiny">Loading...</div>
+            </div>
           </section>
 
           <div class="between-extras-winamp center" aria-hidden="true">
@@ -514,8 +556,10 @@
       <source src="./assets/audio/theme.mp3" type="audio/mpeg" />
     </audio>
 
+    <script src="./js/clock.js" defer></script>
     <script src="./js/snow.js" defer></script>
     <script src="./js/music.js" defer></script>
     <script src="./js/stats.js" defer></script>
+    <script src="./js/admin.js" defer></script>
   </body>
 </html>
