@@ -4,76 +4,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Guestbook | Necdet Şanlı</title>
-    <meta
-      name="description"
-      content="Sign my guestbook — leave a message on Necdet Şanlı’s retro 2000s website."
-    />
+    <title>Admin | Guestbook</title>
+    <meta name="description" content="Guestbook admin panel (private)." />
     <meta name="author" content="Necdet Şanlı" />
-    <meta name="robots" content="index,follow" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="referrer" content="no-referrer" />
 
-    <link rel="canonical" href="https://www.necdetsanli.com/guestbook.html" />
-    <link
-      rel="sitemap"
-      type="application/xml"
-      title="Sitemap"
-      href="/sitemap.xml"
-    />
-
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Necdet Şanlı" />
-    <meta property="og:title" content="Guestbook | Necdet Şanlı" />
-    <meta
-      property="og:description"
-      content="Sign my guestbook — leave a message on Necdet Şanlı’s retro 2000s website."
-    />
-    <meta
-      property="og:url"
-      content="https://www.necdetsanli.com/guestbook.html"
-    />
-    <meta
-      property="og:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
-    />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Guestbook | Necdet Şanlı" />
-    <meta
-      name="twitter:description"
-      content="Sign my guestbook — leave a message on Necdet Şanlı’s retro 2000s website."
-    />
-    <meta
-      name="twitter:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
-    />
+    <link rel="canonical" href="https://www.necdetsanli.com/admin.html" />
+    <link rel="stylesheet" href="./css/styles.css" />
 
     <meta
       http-equiv="Content-Security-Policy"
       content="
         default-src 'self';
         base-uri 'none';
+        object-src 'none';
         frame-ancestors 'none';
         form-action 'self';
         img-src 'self' https: data:;
         style-src 'self';
-        script-src 'self' https://challenges.cloudflare.com;
-        frame-src https://challenges.cloudflare.com;
-        connect-src 'self' https://necdetsanli-guestbook.sanlinecdet97.workers.dev https://challenges.cloudflare.com;
+        script-src 'self';
+        connect-src 'self' https://necdetsanli-guestbook.sanlinecdet97.workers.dev;
+        media-src 'self';
+        upgrade-insecure-requests;
       "
     />
-
-    <link rel="stylesheet" href="./css/styles.css" />
-
-    <script
-      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-      async
-      defer
-    ></script>
   </head>
 
-  <body>
+  <body
+    data-api-base="https://necdetsanli-guestbook.sanlinecdet97.workers.dev/"
+  >
     <div class="page">
       <div class="layout">
         <aside class="col-left" aria-label="Left navigation">
@@ -129,7 +89,7 @@
               <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
             </a>
             <br />
-            <a href="./guestbook.html" aria-current="page"
+            <a href="./guestbook.html"
               >Guestbook
               <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
             </a>
@@ -326,7 +286,7 @@
                 border: 0;
               "
             >
-              Guestbook | Necdet Şanlı
+              Admin | Guestbook
             </h1>
 
             <img
@@ -358,77 +318,31 @@
           />
 
           <section class="box">
-            <div class="box-title">Guestbook</div>
+            <div class="box-title">Admin login</div>
 
-            <p class="tiny">Leave a message below. No HTML, just vibes.</p>
-
-            <form id="guestbook-form" class="guestbook-form" novalidate>
+            <form id="admin-auth" class="guestbook-form" novalidate>
               <label class="guestbook-field">
-                <span class="guestbook-label">Name</span>
+                <span class="guestbook-label">Admin token</span>
                 <input
-                  id="gb-name"
-                  name="name"
+                  id="admin-token"
                   class="guestbook-input"
-                  type="text"
+                  type="password"
                   inputmode="text"
-                  autocomplete="nickname"
-                  maxlength="40"
-                  required
-                />
-              </label>
-
-              <label class="guestbook-field">
-                <span class="guestbook-label">Website (optional)</span>
-                <input
-                  id="gb-website"
-                  name="website"
-                  class="guestbook-input"
-                  type="url"
-                  inputmode="url"
-                  autocomplete="url"
-                  maxlength="200"
-                  placeholder="https://example.com"
-                />
-              </label>
-
-              <label class="guestbook-field">
-                <span class="guestbook-label">Message</span>
-                <textarea
-                  id="gb-message"
-                  name="message"
-                  class="guestbook-textarea"
-                  rows="5"
-                  maxlength="500"
-                  required
-                ></textarea>
-              </label>
-
-              <label class="hp" aria-hidden="true">
-                Company
-                <input
-                  id="gb-company"
-                  name="company"
-                  type="text"
-                  tabindex="-1"
                   autocomplete="off"
+                  placeholder="Paste GB_ADMIN_TOKEN"
+                  required
                 />
               </label>
-
-              <div class="guestbook-field">
-                <span class="guestbook-label">Anti-spam</span>
-                <div
-                  class="cf-turnstile"
-                  data-sitekey="0x4AAAAAACGmCRi-NDKBxy-9"
-                  data-theme="light"
-                ></div>
-              </div>
 
               <div class="guestbook-actions">
-                <button id="gb-submit" type="submit" class="guestbook-btn">
-                  Sign!
+                <button id="admin-save" type="submit" class="guestbook-btn">
+                  Save token
+                </button>
+                <button id="admin-logout" type="button" class="guestbook-btn">
+                  Clear
                 </button>
                 <span
-                  id="gb-status"
+                  id="admin-status"
                   class="guestbook-status"
                   aria-live="polite"
                 ></span>
@@ -437,42 +351,26 @@
           </section>
 
           <section class="box">
-            <div class="box-title">Entries</div>
-            <div id="guestbook-entries" class="guestbook-entries">
+            <div class="box-title">Pending entries</div>
+
+            <div class="guestbook-actions">
+              <button id="admin-refresh" type="button" class="guestbook-btn">
+                Refresh
+              </button>
+              <button id="admin-loadmore" type="button" class="guestbook-btn">
+                Load more
+              </button>
+              <span
+                id="admin-list-status"
+                class="guestbook-status"
+                aria-live="polite"
+              ></span>
+            </div>
+
+            <div id="admin-entries" class="guestbook-entries">
               <div class="tiny">Loading...</div>
             </div>
           </section>
-
-          <section class="box">
-            <div class="box-title">Local / GMT</div>
-
-            <form
-              id="clock-form"
-              class="clock"
-              action="#"
-              method="get"
-              novalidate
-            >
-              <label class="clock-row">
-                <span class="clock-label">Local:</span>
-                <input id="clock-local" type="text" readonly />
-              </label>
-
-              <label class="clock-row">
-                <span class="clock-label">GMT:</span>
-                <input id="clock-gmt" type="text" readonly />
-              </label>
-            </form>
-          </section>
-
-          <noscript>
-            <section class="box">
-              <div class="box-title">JavaScript disabled</div>
-              <div class="tiny">
-                Guestbook needs JavaScript to load and submit entries.
-              </div>
-            </section>
-          </noscript>
 
           <div class="between-extras-winamp center" aria-hidden="true">
             <img
@@ -662,6 +560,6 @@
     <script src="./js/snow.js" defer></script>
     <script src="./js/music.js" defer></script>
     <script src="./js/stats.js" defer></script>
-    <script src="./js/guestbook.js" defer></script>
+    <script src="./js/admin.js" defer></script>
   </body>
 </html>
