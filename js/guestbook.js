@@ -1,7 +1,7 @@
 (() => {
   /** @type {string} */
   const API_URL =
-    "https://https://necdetsanli-guestbook.sanlinecdet97.workers.dev/guestbook";
+    "https://necdetsanli-guestbook.sanlinecdet97.workers.dev/guestbook";
 
   /** @type {number} */
   const FETCH_TIMEOUT_MS = 8000;
