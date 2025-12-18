@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Necdet Şanlı — Site Updates</title>
+    <link>https://www.necdetsanli.com/</link>
+    <description>Updates across the site pages.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 18 Dec 2025 15:18:14 +0000</lastBuildDate>
+    <item>
+      <title>Necdet Şanlı</title>
+      <link>https://www.necdetsanli.com/</link>
+      <guid isPermaLink="true">https://www.necdetsanli.com/</guid>
+      <pubDate>Thu, 18 Dec 2025 17:10:00 +0300</pubDate>
+      <description>Necdet Şanlı’s retro 2000s-style personal website: projects, links, and guestbook.</description>
+    </item>
+    <item>
+      <title>About | Necdet Şanlı</title>
+      <link>https://www.necdetsanli.com/about.html</link>
+      <guid isPermaLink="true">https://www.necdetsanli.com/about.html</guid>
+      <pubDate>Thu, 18 Dec 2025 14:42:30 +0300</pubDate>
+      <description>About Necdet Şanlı — background, interests, and links.</description>
+    </item>
+    <item>
+      <title>Blog | Necdet Şanlı</title>
+      <link>https://www.necdetsanli.com/blog.html</link>
+      <guid isPermaLink="true">https://www.necdetsanli.com/blog.html</guid>
+      <pubDate>Thu, 18 Dec 2025 14:42:30 +0300</pubDate>
+      <description>Blog posts and updates by Necdet Şanlı.</description>
+    </item>
+    <item>
+      <title>Guestbook | Necdet Şanlı</title>
+      <link>https://www.necdetsanli.com/guestbook.html</link>
+      <guid isPermaLink="true">https://www.necdetsanli.com/guestbook.html</guid>
+      <pubDate>Thu, 18 Dec 2025 14:42:30 +0300</pubDate>
+      <description>Sign my guestbook — leave a message on Necdet Şanlı’s retro 2000s website.</description>
+    </item>
+    <item>
+      <title>Home | Necdet Şanlı</title>
+      <link>https://www.necdetsanli.com/home.html</link>
+      <guid isPermaLink="true">https://www.necdetsanli.com/home.html</guid>
+      <pubDate>Thu, 18 Dec 2025 14:42:30 +0300</pubDate>
+      <description>Necdet Şanlı’s retro 2000s-style personal website: projects, links, guestbook, and a Winamp-style player.</description>
+    </item>
+    <item>
+      <title>Cool Sites | Necdet Şanlı</title>
+      <link>https://www.necdetsanli.com/links.html</link>
+      <guid isPermaLink="true">https://www.necdetsanli.com/links.html</guid>
+      <pubDate>Thu, 18 Dec 2025 14:42:30 +0300</pubDate>
+      <description>A small collection of cool sites and links (retro vibes).</description>
+    </item>
+    <item>
+      <title>Projects | Necdet Şanlı</title>
+      <link>https://www.necdetsanli.com/projects.html</link>
+      <guid isPermaLink="true">https://www.necdetsanli.com/projects.html</guid>
+      <pubDate>Thu, 18 Dec 2025 14:42:30 +0300</pubDate>
+      <description>Projects by Necdet Şanlı — software, ML, embedded systems, and more.</description>
+    </item>
+  </channel>
+</rss>
