@@ -1,38 +1,13 @@
 #!/usr/bin/env python3
 """
-Sync CSP script-src hashes for inline <script> blocks (recommended: ALL inline scripts).
+Sync CSP script hashes for inline <script> blocks.
 
-Why:
-- If you only hash JSON-LD and prune all existing hashes, you can accidentally break other inline JS
-  (e.g., audio player init).
-- This script hashes inline <script> bodies exactly as they appear in the HTML source (whitespace included),
-  then updates the CSP meta tag accordingly.
-
-What it does:
-- Finds HTML files under a root directory (recursively).
-- Extracts inline <script> blocks (no src=).
-- Computes sha256-base64 hashes of exact bodies.
-- Updates CSP meta tag (http-equiv="Content-Security-Policy"):
-  - For script-src and/or script-src-elem:
-    - Removes existing sha256/sha384/sha512 hash tokens (optional prune; default ON)
-    - Appends computed sha256 hashes (quoted)
-  - Rewrites CSP to a single line.
-
-Usage:
-  Dry-run:
-    python3 tools/sync_csp_hashes.py
-
-  Write changes:
-    python3 tools/sync_csp_hashes.py --write
-
-  Only JSON-LD (NOT recommended if you have other inline JS):
-    python3 tools/sync_csp_hashes.py --jsonld-only --write
-
-  Include tools/ in scan:
-    python3 tools/sync_csp_hashes.py --include-tools --write
-
-  CI check (exit 1 if changes would be made):
-    python3 tools/sync_csp_hashes.py --check
+- Finds inline <script>...</script> blocks (no src=) in *.html files
+- Computes sha256-base64 hashes of the *exact* inline content (including whitespace/newlines)
+- Updates the page's CSP meta tag:
+  - Removes existing hash tokens (sha256/sha384/sha512) from script-src (+ script-src-elem if present)
+  - Appends the newly computed sha256 hashes (quoted)
+  - Rewrites CSP content as a single line
 """
 
 from __future__ import annotations
@@ -48,37 +23,25 @@ from typing import List, Optional, Tuple
 
 
 SCRIPT_TAG_RE = re.compile(
-    r"<script\b(?P<attrs>[^>]*)>(?P<body>.*?)</script\s*>",
+    r"<script\b(?P<attrs>[^>]*)>(?P<body>.*?)</script>",
     re.IGNORECASE | re.DOTALL,
 )
-META_TAG_RE = re.compile(r"<meta\b[^>]*>", re.IGNORECASE | re.DOTALL)
 
+META_TAG_RE = re.compile(r"<meta\b[^>]*>", re.IGNORECASE | re.DOTALL)
 CSP_HTTP_EQUIV_RE = re.compile(
-    r"http-equiv\s*=\s*(?P<q>[\"'])Content-Security-Policy(?P=q)",
-    re.IGNORECASE,
+    r"http-equiv\s*=\s*([\"'])Content-Security-Policy\1", re.IGNORECASE
 )
 CONTENT_ATTR_RE = re.compile(
-    r"\bcontent\s*=\s*(?P<q>[\"'])(?P<v>.*?)(?P=q)",
-    re.IGNORECASE | re.DOTALL,
+    r"\bcontent\s*=\s*(?P<q>[\"'])(?P<v>.*?)(?P=q)", re.IGNORECASE | re.DOTALL
 )
-
 SRC_ATTR_RE = re.compile(r"\bsrc\s*=", re.IGNORECASE)
-TYPE_JSONLD_RE = re.compile(
-    r"\btype\s*=\s*(?P<q>[\"'])application/ld\+json(?P=q)",
-    re.IGNORECASE,
-)
+TYPE_ATTR_RE = re.compile(r"\btype\s*=\s*([\"'])(?P<t>.*?)\1", re.IGNORECASE | re.DOTALL)
 
 
 @dataclass(frozen=True)
 class CspDirective:
     name: str
     values: List[str]
-
-
-@dataclass(frozen=True)
-class InlineScript:
-    body: str
-    is_jsonld: bool
 
 
 def _sha256_b64(s: str) -> str:
@@ -94,7 +57,6 @@ def _is_hash_token(token: str) -> bool:
 
 
 def _parse_csp(csp: str) -> List[CspDirective]:
-    # Normalize whitespace/newlines but do NOT change semantics besides spacing
     normalized = " ".join(csp.replace("\r", "\n").split())
     parts = [p.strip() for p in normalized.split(";")]
     directives: List[CspDirective] = []
@@ -120,45 +82,44 @@ def _render_csp(directives: List[CspDirective]) -> str:
     return "; ".join(rendered)
 
 
-def _collect_html_files(root: Path, include_tools: bool) -> List[Path]:
-    skip_dirs = {
-        ".git",
-        "node_modules",
-        "dist",
-        "build",
-        ".next",
-        ".venv",
-        "venv",
-        "__pycache__",
-    }
-    if include_tools is False:
-        skip_dirs.add("tools")
+def _update_hashes_for_directives(
+    directives: List[CspDirective],
+    directive_names: List[str],
+    hashes: List[str],
+) -> Tuple[List[CspDirective], bool]:
+    wanted_hash_tokens = [f"'sha256-{h}'" for h in hashes]
+    changed = False
 
-    results: List[Path] = []
-    for p in root.rglob("*.html"):
-        if any(part in skip_dirs for part in p.parts):
+    out: List[CspDirective] = []
+    found_any = False
+
+    for d in directives:
+        if d.name not in directive_names:
+            out.append(d)
             continue
-        results.append(p)
 
-    return sorted(results)
+        found_any = True
+        kept: List[str] = []
+        for v in d.values:
+            if _is_hash_token(v):
+                changed = True
+                continue
+            kept.append(v)
 
+        for ht in wanted_hash_tokens:
+            if ht not in kept:
+                kept.append(ht)
+                changed = True
 
-def _extract_inline_scripts(html: str) -> List[InlineScript]:
-    scripts: List[InlineScript] = []
-    for m in SCRIPT_TAG_RE.finditer(html):
-        attrs = m.group("attrs") or ""
-        if SRC_ATTR_RE.search(attrs) is not None:
-            continue
-        body = m.group("body")
-        is_jsonld = TYPE_JSONLD_RE.search(attrs) is not None
-        scripts.append(InlineScript(body=body, is_jsonld=is_jsonld))
-    return scripts
+        out.append(CspDirective(name=d.name, values=kept))
+
+    if found_any is False:
+        return directives, False
+
+    return out, changed
 
 
 def _find_csp_meta_tag(html: str) -> Optional[Tuple[re.Match[str], str, str]]:
-    """
-    Returns (meta_match, full_meta_tag, content_value) for the first CSP meta tag.
-    """
     for m in META_TAG_RE.finditer(html):
         tag = m.group(0)
         if CSP_HTTP_EQUIV_RE.search(tag) is None:
@@ -171,79 +132,46 @@ def _find_csp_meta_tag(html: str) -> Optional[Tuple[re.Match[str], str, str]]:
 
 
 def _replace_meta_content(tag: str, new_content: str) -> str:
-    """
-    Replace content=... attribute value. Always writes with double-quotes to avoid
-    breaking on CSP tokens that contain single quotes (e.g., 'self', 'sha256-...').
-    """
     cm = CONTENT_ATTR_RE.search(tag)
     if cm is None:
         return tag
-
-    # Escape any literal double-quotes defensively (rare in CSP, but safe).
-    safe_content = new_content.replace('"', "&quot;")
-
-    # Replace the first content=... occurrence with content="...".
+    q = cm.group("q")
     return CONTENT_ATTR_RE.sub(
-        lambda _m: f'content="{safe_content}"',
+        lambda _m: f"content={q}{new_content}{q}",
         tag,
         count=1,
     )
 
 
-def _update_directive_values(
-    values: List[str],
-    wanted_hash_tokens: List[str],
-    prune_existing_hashes: bool,
-) -> Tuple[List[str], bool]:
-    changed = False
-    kept: List[str] = []
+def _collect_html_files(root: Path) -> List[Path]:
+    skip_dirs = {".git", "node_modules", "dist", "build", ".next", ".venv", "venv", "__pycache__"}
+    results: List[Path] = []
 
-    for v in values:
-        if prune_existing_hashes is True and _is_hash_token(v):
-            changed = True
+    for p in root.rglob("*.html"):
+        if any(part in skip_dirs for part in p.parts):
             continue
-        kept.append(v)
+        results.append(p)
 
-    for ht in wanted_hash_tokens:
-        if ht not in kept:
-            kept.append(ht)
-            changed = True
-
-    return kept, changed
+    return sorted(results)
 
 
-def _update_csp(
-    directives: List[CspDirective],
-    hashes_b64: List[str],
-    prune_existing_hashes: bool,
-) -> Tuple[List[CspDirective], bool]:
-    wanted_hash_tokens = [f"'sha256-{h}'" for h in hashes_b64]
+def _extract_inline_script_bodies(html: str) -> List[str]:
+    bodies: List[str] = []
+    for m in SCRIPT_TAG_RE.finditer(html):
+        attrs = m.group("attrs") or ""
+        body = m.group("body") or ""
 
-    changed_any = False
-    out: List[CspDirective] = []
-
-    has_script_src = any(d.name == "script-src" for d in directives)
-    has_script_src_elem = any(d.name == "script-src-elem" for d in directives)
-
-    if has_script_src is False and has_script_src_elem is False:
-        # Don't invent a policy automatically.
-        return directives, False
-
-    for d in directives:
-        if d.name not in {"script-src", "script-src-elem"}:
-            out.append(d)
+        if SRC_ATTR_RE.search(attrs) is not None:
             continue
 
-        updated_values, changed = _update_directive_values(
-            d.values,
-            wanted_hash_tokens=wanted_hash_tokens,
-            prune_existing_hashes=prune_existing_hashes,
-        )
-        if changed is True:
-            changed_any = True
-        out.append(CspDirective(name=d.name, values=updated_values))
+        # Skip empty scripts (whitespace-only) to avoid adding pointless hashes.
+        if body.strip() == "":
+            continue
 
-    return out, changed_any
+        # Keep exact body (including indentation/newlines) because CSP hashes are exact.
+        bodies.append(body)
+
+    return bodies
 
 
 def main() -> int:
@@ -259,26 +187,6 @@ def main() -> int:
         action="store_true",
         help="Write changes to files. Without this flag, runs in dry-run mode.",
     )
-    parser.add_argument(
-        "--check",
-        action="store_true",
-        help="Exit with code 1 if any file would change (CI-friendly). Implies dry-run.",
-    )
-    parser.add_argument(
-        "--jsonld-only",
-        action="store_true",
-        help="Only hash <script type='application/ld+json'> blocks. Not recommended if you have other inline JS.",
-    )
-    parser.add_argument(
-        "--include-tools",
-        action="store_true",
-        help="Include tools/ directory when scanning for HTML files.",
-    )
-    parser.add_argument(
-        "--no-prune",
-        action="store_true",
-        help="Do not remove existing sha* hash tokens; only append missing ones.",
-    )
     args = parser.parse_args()
 
     script_dir = Path(__file__).resolve().parent
@@ -289,86 +197,71 @@ def main() -> int:
         print(f"[error] root not found or not a directory: {root}", file=sys.stderr)
         return 2
 
-    html_files = _collect_html_files(root, include_tools=args.include_tools)
+    html_files = _collect_html_files(root)
     if len(html_files) == 0:
         print(f"[warn] no .html files found under: {root}")
         return 0
 
-    prune_existing_hashes = (args.no_prune is False)
-
     touched = 0
     skipped_no_csp = 0
-    skipped_no_scriptsrc = 0
 
     for fp in html_files:
         original = fp.read_text(encoding="utf-8")
 
-        inline_scripts = _extract_inline_scripts(original)
-        if len(inline_scripts) == 0:
+        bodies = _extract_inline_script_bodies(original)
+        if len(bodies) == 0:
             continue
 
-        selected = (
-            [s for s in inline_scripts if s.is_jsonld]
-            if args.jsonld_only is True
-            else inline_scripts
-        )
-        if len(selected) == 0:
-            continue
-
-        hashes = [_sha256_b64(s.body) for s in selected]
+        # Dedup while preserving order.
+        seen = set()
+        hashes: List[str] = []
+        for b in bodies:
+            h = _sha256_b64(b)
+            if h in seen:
+                continue
+            seen.add(h)
+            hashes.append(h)
 
         csp_meta = _find_csp_meta_tag(original)
         if csp_meta is None:
             skipped_no_csp += 1
-            print(f"[warn] {fp}: has inline scripts but no CSP meta (http-equiv). Skipping.")
+            print(f"[warn] {fp}: has inline <script> but no CSP meta (http-equiv). Skipping.")
             continue
 
         meta_match, old_tag, old_csp = csp_meta
         directives = _parse_csp(old_csp)
 
-        updated_directives, changed = _update_csp(
-            directives,
-            hashes_b64=hashes,
-            prune_existing_hashes=prune_existing_hashes,
-        )
+        updated, changed_a = _update_hashes_for_directives(directives, ["script-src"], hashes)
+        updated, changed_b = _update_hashes_for_directives(updated, ["script-src-elem"], hashes)
+        changed = (changed_a is True) or (changed_b is True)
+
         if changed is False:
-            # Might be because script-src/script-src-elem doesn't exist.
-            has_script_src = any(d.name == "script-src" for d in directives)
-            has_script_src_elem = any(d.name == "script-src-elem" for d in directives)
-            if has_script_src is False and has_script_src_elem is False:
-                skipped_no_scriptsrc += 1
-                print(f"[warn] {fp}: CSP has no script-src / script-src-elem. Skipping.")
             continue
 
-        new_csp = _render_csp(updated_directives)
+        new_csp = _render_csp(updated)
         new_tag = _replace_meta_content(old_tag, new_csp)
-
         updated_html = original[: meta_match.start()] + new_tag + original[meta_match.end() :]
 
-        touched += 1
-        mode = "jsonld-only" if args.jsonld_only is True else "all-inline"
-        print(f"[ok] {fp}: updated CSP hashes ({len(hashes)} scripts, mode={mode}, prune={prune_existing_hashes})")
+        if updated_html == original:
+            print(f"[skip] {fp}: hashes already up to date.")
+            continue
 
-        if args.write and (args.check is False):
+        touched += 1
+        print(f"[ok] {fp}: updated script hashes ({len(hashes)} inline block(s))")
+
+        if args.write:
             fp.write_text(updated_html, encoding="utf-8")
 
     if touched == 0:
         print("[done] no changes needed.")
-        return 0
-
-    if args.check is True:
-        print(f"[done] check failed: {touched} file(s) would change.")
-        return 1
-
-    if args.write is True:
-        print(f"[done] wrote changes to {touched} file(s).")
     else:
-        print(f"[done] dry-run: {touched} file(s) would change. Re-run with --write.")
+        if args.write:
+            print(f"[done] wrote changes to {touched} file(s).")
+        else:
+            print(f"[done] dry-run: {touched} file(s) would change. Re-run with --write.")
 
     if skipped_no_csp > 0:
-        print(f"[note] {skipped_no_csp} file(s) had inline scripts but no CSP meta. Add CSP or handle separately.")
-    if skipped_no_scriptsrc > 0:
-        print(f"[note] {skipped_no_scriptsrc} file(s) had CSP meta but no script-src/script-src-elem.")
+        print(f"[note] {skipped_no_csp} file(s) had inline <script> but no CSP meta. Add CSP or handle separately.")
 
     return 0
 
