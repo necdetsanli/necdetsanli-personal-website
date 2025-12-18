@@ -7,11 +7,14 @@
     <title>About | Necdet Şanlı</title>
     <meta
       name="description"
-      content="About Necdet Şanlı: computer systems, side projects, and hobbies."
+      content="About Necdet Şanlı — background, interests, and links."
     />
     <meta name="author" content="Necdet Şanlı" />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="light" />
 
     <link rel="canonical" href="https://www.necdetsanli.com/about.html" />
     <link
@@ -21,48 +24,93 @@
       href="/sitemap.xml"
     />
 
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Necdet Şanlı" />
     <meta property="og:title" content="About | Necdet Şanlı" />
     <meta
       property="og:description"
-      content="Computer systems, side projects, and hobbies."
+      content="About Necdet Şanlı — background, interests, and links."
     />
     <meta property="og:url" content="https://www.necdetsanli.com/about.html" />
     <meta
       property="og:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
     />
+    <meta property="og:image:type" content="image/gif" />
+    <meta property="og:image:alt" content="Portrait of Necdet Şanlı" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="About | Necdet Şanlı" />
     <meta
       name="twitter:description"
-      content="Computer systems, side projects, and hobbies."
+      content="About Necdet Şanlı — background, interests, and links."
     />
     <meta
       name="twitter:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
     />
+    <meta name="twitter:image:alt" content="Portrait of Necdet Şanlı" />
 
+    <!-- Security (meta fallback; best as HTTP headers) -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="
-        default-src 'self';
-        base-uri 'none';
-        object-src 'none';
-        frame-ancestors 'none';
-        form-action 'self';
-        img-src 'self' https: data:;
-        style-src 'self';
-        script-src 'self';
-        connect-src 'self';
-        upgrade-insecure-requests;
-      "
+      content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; style-src 'self'; script-src 'self' 'sha256-vwOmLwtXpoOtO9y6HSdRYGGllRRfSNpHM8n8XG5tyGg='; connect-src 'self' https://api.counterapi.dev; media-src 'self'; font-src 'self' data:; upgrade-insecure-requests; block-all-mixed-content"
+    />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
     />
 
     <link rel="stylesheet" href="./css/styles.css" />
+
+    <!-- ld:person begin (generated) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.necdetsanli.com/#necdet",
+            "name": "Necdet Şanlı",
+            "url": "https://www.necdetsanli.com/",
+            "image": "https://www.necdetsanli.com/assets/gifs/me_glint.gif",
+            "email": "mailto:me@necdetsanli.com",
+            "sameAs": [
+              "https://github.com/necdetsanli",
+              "https://www.linkedin.com/in/necdetsanli",
+              "https://www.donotghostme.com/"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.necdetsanli.com/about.html#webpage",
+            "url": "https://www.necdetsanli.com/about.html",
+            "name": "About | Necdet Şanlı",
+            "description": "About Necdet Şanlı — background, interests, and links.",
+            "isPartOf": { "@id": "https://www.necdetsanli.com/#website" },
+            "about": { "@id": "https://www.necdetsanli.com/#necdet" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.necdetsanli.com/#website",
+            "url": "https://www.necdetsanli.com/",
+            "name": "Necdet Şanlı",
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
+    <!-- ld:person end -->
   </head>
 
   <body>
@@ -338,7 +386,7 @@
             <div class="tiny">
               I love everything about computers. I’m curious about everything
               from kernels and networking to containers, observability,
-              performance, security,and the little details that make software
+              performance, security, and the little details that make software
               reliable.
               <br /><br />
               In my free time, I enjoy building new projects just to learn, to
@@ -558,7 +606,7 @@
 
     <audio id="bg-audio" preload="metadata" loop autoplay>
       <source
-        src="./assets/audio/Jean Baptiste Lully (1632-1687) - Marche pour la cérémonie des Turcs.mp3"
+        src="./assets/audio/jean-baptiste-lully-marche-turcs.mp3"
         type="audio/mpeg"
       />
     </audio>

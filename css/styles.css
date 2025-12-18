@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-body {
+body:not(.enter) {
   margin: 0;
   padding-bottom: var(--player-h);
   font-family: Verdana, Tahoma, Arial, sans-serif;
@@ -818,4 +818,44 @@ html::after {
 
 .extras-links-text {
   transform: translateY(2px);
+}
+
+.notfound-hero {
+  margin: 10px 0 0 0;
+}
+
+.notfound-hero-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.blog-uc-wrap {
+  padding: 10px 0;
+}
+
+.blog-uc-img {
+  display: block;
+  margin: 14px auto 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.lost-hero {
+  margin: 10px 0 0 0;
+}
+
+.uc-hero {
+  padding: 10px 0;
+}
+
+.uc-hero-img {
+  display: block;
+  margin: 14px auto 0 auto;
+}
+
+.guestbook-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }

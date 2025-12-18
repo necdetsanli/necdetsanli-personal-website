@@ -1,4 +1,3 @@
-cat > projects.html <<'EOF'
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,8 +10,11 @@ cat > projects.html <<'EOF'
       content="Projects by Necdet Şanlı — software, ML, embedded systems, and more."
     />
     <meta name="author" content="Necdet Şanlı" />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="light" />
 
     <link rel="canonical" href="https://www.necdetsanli.com/projects.html" />
     <link
@@ -21,6 +23,12 @@ cat > projects.html <<'EOF'
       title="Sitemap"
       href="/sitemap.xml"
     />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
@@ -36,8 +44,10 @@ cat > projects.html <<'EOF'
     />
     <meta
       property="og:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
     />
+    <meta property="og:image:type" content="image/gif" />
+    <meta property="og:image:alt" content="Portrait of Necdet Şanlı" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Projects | Necdet Şanlı" />
@@ -47,25 +57,61 @@ cat > projects.html <<'EOF'
     />
     <meta
       name="twitter:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
+    />
+    <meta name="twitter:image:alt" content="Portrait of Necdet Şanlı" />
+
+    <!-- Security (meta fallback; ideally serve as HTTP headers) -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; style-src 'self'; script-src 'self' 'sha256-oHTNBErIPck8TGC8GBZarYZXcjH9vmMwtT2QgVHk6Fw='; connect-src 'self' https://api.counterapi.dev; media-src 'self'; font-src 'self' data:; upgrade-insecure-requests; block-all-mixed-content"
+    />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
     />
 
+    <link rel="stylesheet" href="./css/styles.css" />
+
+    <!-- ld:person begin (generated) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Necdet Şanlı",
-        "url": "https://www.necdetsanli.com/",
-        "email": "mailto:me@necdetsanli.com",
-        "sameAs": [
-          "https://github.com/necdetsanli",
-          "https://www.linkedin.com/in/necdetsanli",
-          "https://www.donotghostme.com"
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.necdetsanli.com/#necdet",
+            "name": "Necdet Şanlı",
+            "url": "https://www.necdetsanli.com/",
+            "image": "https://www.necdetsanli.com/assets/gifs/me_glint.gif",
+            "email": "mailto:me@necdetsanli.com",
+            "sameAs": [
+              "https://github.com/necdetsanli",
+              "https://www.linkedin.com/in/necdetsanli",
+              "https://www.donotghostme.com/"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.necdetsanli.com/projects.html#webpage",
+            "url": "https://www.necdetsanli.com/projects.html",
+            "name": "Projects | Necdet Şanlı",
+            "description": "Projects by Necdet Şanlı — software, ML, embedded systems, and more.",
+            "isPartOf": { "@id": "https://www.necdetsanli.com/#website" },
+            "about": { "@id": "https://www.necdetsanli.com/#necdet" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.necdetsanli.com/#website",
+            "url": "https://www.necdetsanli.com/",
+            "name": "Necdet Şanlı",
+            "inLanguage": "en"
+          }
         ]
       }
     </script>
-
-    <link rel="stylesheet" href="./css/styles.css" />
+    <!-- ld:person end -->
   </head>
 
   <body>
@@ -339,7 +385,7 @@ cat > projects.html <<'EOF'
           />
 
           <section class="box">
-            <div class="box-title">Projects</div>
+            <h2 class="box-title">Projects</h2>
             <div class="tiny">
               A curated list of things I built — full-stack, systems, ML, and
               embedded.
@@ -347,9 +393,9 @@ cat > projects.html <<'EOF'
           </section>
 
           <section class="box">
-            <div class="box-title">
+            <h2 class="box-title">
               Do Not Ghost Me – Anonymous Recruitment Ghosting Tracker
-            </div>
+            </h2>
 
             <p class="tiny">
               Do Not Ghost Me is an open-source, privacy-first platform that
@@ -402,9 +448,9 @@ cat > projects.html <<'EOF'
           </section>
 
           <section class="box">
-            <div class="box-title">
+            <h2 class="box-title">
               EyeRest – Windows Tray App for the 20–20–20 Rule
-            </div>
+            </h2>
 
             <p class="tiny">
               EyeRest is a lightweight Windows tray application that helps users
@@ -459,9 +505,9 @@ cat > projects.html <<'EOF'
           </section>
 
           <section class="box">
-            <div class="box-title">
+            <h2 class="box-title">
               Automatic Expiration Date Extraction from Product Images
-            </div>
+            </h2>
 
             <p class="tiny">
               Developed an image-processing pipeline that detects and reads
@@ -500,9 +546,9 @@ cat > projects.html <<'EOF'
           </section>
 
           <section class="box">
-            <div class="box-title">
+            <h2 class="box-title">
               ESP32-Based Wi-Fi Room Intrusion Alert System
-            </div>
+            </h2>
 
             <p class="tiny">
               Developed an ESP32-based alarm system, programmed with the Arduino
@@ -540,7 +586,7 @@ cat > projects.html <<'EOF'
           </section>
 
           <section class="box">
-            <div class="box-title">Fuzzy Logic Buy / Hold / Sell Signals</div>
+            <h2 class="box-title">Fuzzy Logic Buy / Hold / Sell Signals</h2>
 
             <p class="tiny">
               Developed a fuzzy logic–based decision support system that
@@ -574,10 +620,10 @@ cat > projects.html <<'EOF'
           </section>
 
           <section class="box">
-            <div class="box-title">
+            <h2 class="box-title">
               Real Estate Price Estimation & Fair-Price Classification
               (Istanbul)
-            </div>
+            </h2>
 
             <p class="tiny">
               Built a machine learning model on a real-estate dataset of
@@ -618,9 +664,9 @@ cat > projects.html <<'EOF'
           </section>
 
           <section class="box">
-            <div class="box-title">
+            <h2 class="box-title">
               Sentiment Analysis of User Comments with Weka
-            </div>
+            </h2>
 
             <p class="tiny">
               Built a sentiment analysis pipeline on a dataset of user comments
@@ -658,7 +704,7 @@ cat > projects.html <<'EOF'
           </section>
 
           <section class="box">
-            <div class="box-title">Local / GMT</div>
+            <h2 class="box-title">Local / GMT</h2>
 
             <form
               id="clock-form"
@@ -874,7 +920,7 @@ cat > projects.html <<'EOF'
 
     <audio id="bg-audio" preload="metadata" loop autoplay>
       <source
-        src="./assets/audio/Jean Baptiste Lully (1632-1687) - Marche pour la cérémonie des Turcs.mp3"
+        src="./assets/audio/jean-baptiste-lully-marche-turcs.mp3"
         type="audio/mpeg"
       />
     </audio>
@@ -886,4 +932,3 @@ cat > projects.html <<'EOF'
     <script src="./js/stats.js" defer></script>
   </body>
 </html>
-EOF

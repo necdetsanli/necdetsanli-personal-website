@@ -10,8 +10,11 @@
       content="A small collection of cool sites and links (retro vibes)."
     />
     <meta name="author" content="Necdet Şanlı" />
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="light" />
 
     <link rel="canonical" href="https://www.necdetsanli.com/links.html" />
     <link
@@ -20,6 +23,12 @@
       title="Sitemap"
       href="/sitemap.xml"
     />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
@@ -32,8 +41,10 @@
     <meta property="og:url" content="https://www.necdetsanli.com/links.html" />
     <meta
       property="og:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
     />
+    <meta property="og:image:type" content="image/gif" />
+    <meta property="og:image:alt" content="Portrait of Necdet Şanlı" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Cool Sites | Necdet Şanlı" />
@@ -43,10 +54,60 @@
     />
     <meta
       name="twitter:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
+    />
+    <meta name="twitter:image:alt" content="Portrait of Necdet Şanlı" />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; style-src 'self'; script-src 'self' 'sha256-URUMIXBK2T+tcypUOfx2JA6vZKLhsyU9G7LBjKBsCG4='; connect-src 'self' https://api.counterapi.dev; media-src 'self'; font-src 'self' data:; upgrade-insecure-requests; block-all-mixed-content"
+    />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
     />
 
     <link rel="stylesheet" href="./css/styles.css" />
+
+    <!-- ld:person begin (generated) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.necdetsanli.com/#necdet",
+            "name": "Necdet Şanlı",
+            "url": "https://www.necdetsanli.com/",
+            "image": "https://www.necdetsanli.com/assets/gifs/me_glint.gif",
+            "email": "mailto:me@necdetsanli.com",
+            "sameAs": [
+              "https://github.com/necdetsanli",
+              "https://www.linkedin.com/in/necdetsanli",
+              "https://www.donotghostme.com/"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.necdetsanli.com/links.html#webpage",
+            "url": "https://www.necdetsanli.com/links.html",
+            "name": "Cool Sites | Necdet Şanlı",
+            "description": "A small collection of cool sites and links (retro vibes).",
+            "isPartOf": { "@id": "https://www.necdetsanli.com/#website" },
+            "about": { "@id": "https://www.necdetsanli.com/#necdet" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.necdetsanli.com/#website",
+            "url": "https://www.necdetsanli.com/",
+            "name": "Necdet Şanlı",
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
+    <!-- ld:person end -->
   </head>
 
   <body>
@@ -90,16 +151,14 @@
               >About
               <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /></a
             ><br />
-            <a href="./blog.html">
-              Blog
-              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
-            </a>
-            <br />
-            <a href="./projects.html">
-              Projects
-              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" />
-            </a>
-            <br />
+            <a href="./blog.html"
+              >Blog
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /></a
+            ><br />
+            <a href="./projects.html"
+              >Projects
+              <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /></a
+            ><br />
             <a href="./links.html" aria-current="page"
               >Cool Sites
               <img class="new-tag" src="./assets/gifs/new.gif" alt="New" /> </a
@@ -332,7 +391,7 @@
                 <a
                   href="https://news.ycombinator.com/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Hacker News</a
                 >
               </li>
@@ -340,7 +399,7 @@
                 <a
                   href="https://dev.to/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >dev.to</a
                 >
               </li>
@@ -348,7 +407,7 @@
                 <a
                   href="https://lobste.rs/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Lobsters</a
                 >
               </li>
@@ -356,7 +415,7 @@
                 <a
                   href="https://github.com/trending"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >GitHub Trending</a
                 >
               </li>
@@ -364,7 +423,7 @@
                 <a
                   href="https://wiki.archlinux.org/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Arch Wiki</a
                 >
               </li>
@@ -372,7 +431,7 @@
                 <a
                   href="https://man7.org/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Man Pages</a
                 >
               </li>
@@ -380,7 +439,7 @@
                 <a
                   href="https://linux.die.net/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Linux Man Pages</a
                 >
               </li>
@@ -388,7 +447,7 @@
                 <a
                   href="https://kernel.org/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Linux Kernel</a
                 >
               </li>
@@ -396,7 +455,7 @@
                 <a
                   href="https://lwn.net/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >LWN</a
                 >
               </li>
@@ -404,7 +463,7 @@
                 <a
                   href="https://pubs.opengroup.org/onlinepubs/9699919799/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >POSIX</a
                 >
               </li>
@@ -418,7 +477,7 @@
                 <a
                   href="https://neocities.org/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Neocities</a
                 >
               </li>
@@ -426,7 +485,7 @@
                 <a
                   href="https://www.wiby.me/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Wiby (retro search)</a
                 >
               </li>
@@ -434,7 +493,7 @@
                 <a
                   href="https://theoldnet.com/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >The Old Net</a
                 >
               </li>
@@ -442,7 +501,7 @@
                 <a
                   href="https://www.cameronsworld.net/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Cameron’s World</a
                 >
               </li>
@@ -456,7 +515,7 @@
                 <a
                   href="https://www.youtube.com/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >YouTube</a
                 >
               </li>
@@ -464,7 +523,7 @@
                 <a
                   href="https://bandcamp.com/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Bandcamp</a
                 >
               </li>
@@ -472,7 +531,7 @@
                 <a
                   href="https://soundcloud.com/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >SoundCloud</a
                 >
               </li>
@@ -486,7 +545,7 @@
                 <a
                   href="https://www.wikipedia.org/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Wikipedia</a
                 >
               </li>
@@ -494,7 +553,7 @@
                 <a
                   href="https://archive.org/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer external nofollow"
                   >Internet Archive</a
                 >
               </li>
@@ -647,7 +706,6 @@
         >
           ▶
         </button>
-
         <div class="winamp-eq" aria-hidden="true">
           <span></span><span></span><span></span><span></span><span></span>
         </div>
@@ -686,12 +744,11 @@
 
     <audio id="bg-audio" preload="metadata" loop autoplay>
       <source
-        src="./assets/audio/Jean Baptiste Lully (1632-1687) - Marche pour la cérémonie des Turcs.mp3"
+        src="./assets/audio/jean-baptiste-lully-marche-turcs.mp3"
         type="audio/mpeg"
       />
     </audio>
 
-    <script src="./js/clock.js" defer></script>
     <script src="./js/snow.js" defer></script>
     <script src="./js/music.js" defer></script>
     <script src="./js/music_persist.js" defer></script>

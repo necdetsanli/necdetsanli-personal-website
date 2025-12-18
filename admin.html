@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Admin | Guestbook</title>
-    <meta name="description" content="Guestbook admin panel (private)." />
+    <meta name="description" content="Admin panel." />
     <meta name="author" content="Necdet Şanlı" />
-    <meta name="robots" content="noindex,nofollow" />
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet" />
+    <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet" />
     <meta name="referrer" content="no-referrer" />
 
     <link rel="canonical" href="https://www.necdetsanli.com/admin.html" />
@@ -15,25 +16,57 @@
 
     <meta
       http-equiv="Content-Security-Policy"
-      content="
-        default-src 'self';
-        base-uri 'none';
-        object-src 'none';
-        frame-ancestors 'none';
-        form-action 'self';
-        img-src 'self' https: data:;
-        style-src 'self';
-        script-src 'self';
-        connect-src 'self' https://necdetsanli-guestbook.sanlinecdet97.workers.dev/;
-        media-src 'self';
-        upgrade-insecure-requests;
-      "
+      content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; style-src 'self'; script-src 'self' 'sha256-7engLiDhgaCp3Kb5PEENNBkQAM/OeeNCk8edcNvRQAo='; connect-src 'self' https://necdetsanli-guestbook.sanlinecdet97.workers.dev; media-src 'none'; upgrade-insecure-requests; block-all-mixed-content; require-trusted-types-for 'script'"
     />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- ld:person begin (generated) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.necdetsanli.com/#necdet",
+            "name": "Necdet Şanlı",
+            "url": "https://www.necdetsanli.com/",
+            "image": "https://www.necdetsanli.com/assets/gifs/me_glint.gif",
+            "email": "mailto:me@necdetsanli.com",
+            "sameAs": [
+              "https://github.com/necdetsanli",
+              "https://www.linkedin.com/in/necdetsanli",
+              "https://www.donotghostme.com/"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.necdetsanli.com/admin.html#webpage",
+            "url": "https://www.necdetsanli.com/admin.html",
+            "name": "Admin | Necdet Şanlı",
+            "description": "Admin panel.",
+            "isPartOf": { "@id": "https://www.necdetsanli.com/#website" },
+            "about": { "@id": "https://www.necdetsanli.com/#necdet" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.necdetsanli.com/#website",
+            "url": "https://www.necdetsanli.com/",
+            "name": "Necdet Şanlı",
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
+    <!-- ld:person end -->
   </head>
 
-  <body
-    data-api-base="https://necdetsanli-guestbook.sanlinecdet97.workers.dev/"
-  >
+  <body>
     <div class="page">
       <div class="layout">
         <aside class="col-left" aria-label="Left navigation">
@@ -273,21 +306,7 @@
 
         <main class="col-main" aria-label="Main content">
           <div class="center header-stack">
-            <h1
-              style="
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                white-space: nowrap;
-                border: 0;
-              "
-            >
-              Admin | Guestbook
-            </h1>
+            <h1 class="sr-only">Admin | Guestbook</h1>
 
             <img
               class="title-img"
@@ -329,6 +348,8 @@
                   type="password"
                   inputmode="text"
                   autocomplete="off"
+                  spellcheck="false"
+                  autocapitalize="none"
                   placeholder="Paste GB_ADMIN_TOKEN"
                   required
                 />
@@ -386,20 +407,25 @@
           <section class="box box-right">
             <div class="box-title">Cool stuff</div>
             <div class="tiny">
-              <a href="https://www.donotghostme.com" rel="me">Do Not Ghost Me</a
+              <a
+                href="https://www.donotghostme.com"
+                rel="me noopener noreferrer"
+                >Do Not Ghost Me</a
               ><br />
-              <a href="https://github.com/necdetsanli/EyeRest" rel="me"
+              <a
+                href="https://github.com/necdetsanli/EyeRest"
+                rel="me noopener noreferrer"
                 >EyeRest</a
               ><br />
-              <a href="https://github.com/necdetsanli" rel="me">My GitHub</a
+              <a
+                href="https://github.com/necdetsanli"
+                rel="me noopener noreferrer"
+                >My GitHub</a
               ><br />
-              <a href="https://www.linkedin.com/in/necdetsanli" rel="me"
+              <a
+                href="https://www.linkedin.com/in/necdetsanli"
+                rel="me noopener noreferrer"
                 >My LinkedIn</a
-              ><br />
-              <a href="https://www.youtube.com/watch?v=EVPo57xgRY4">My Song</a
-              ><br />
-              <a href="https://www.youtube.com/watch?v=PMjKHqUPpxk"
-                >My Cover Song</a
               ><br />
             </div>
           </section>
@@ -445,128 +471,10 @@
               />
             </div>
           </section>
-
-          <section class="box box-right">
-            <div class="box-title">Site stats</div>
-
-            <dl class="stats">
-              <div class="stats-row">
-                <dt>You're visitor #</dt>
-                <dd><span id="visitor-count">...</span></dd>
-              </div>
-
-              <div class="stats-row">
-                <dt>Last updated:</dt>
-                <dd><span id="last-updated">...</span></dd>
-              </div>
-
-              <div class="stats-row">
-                <dt>Hosted on:</dt>
-                <dd>GitHub Pages</dd>
-              </div>
-
-              <div class="stats-row">
-                <dt>Best viewed:</dt>
-                <dd>1024×768</dd>
-              </div>
-
-              <div class="stats-row">
-                <dt>Timezone:</dt>
-                <dd>GMT+3</dd>
-              </div>
-            </dl>
-
-            <div class="center tiny">
-              <a
-                class="guestbook-cta"
-                href="./guestbook.html"
-                aria-label="Go to guestbook"
-              >
-                <img
-                  class="pixel"
-                  src="./assets/gifs/sign_my_guestbook.gif"
-                  width="88"
-                  height="31"
-                  alt="Sign my guestbook"
-                  loading="lazy"
-                />
-              </a>
-
-              <a href="mailto:me@necdetsanli.com" aria-label="Email me">
-                <img
-                  class="pixel"
-                  src="./assets/gifs/email_me.gif"
-                  width="88"
-                  height="31"
-                  alt="Email me"
-                  loading="lazy"
-                />
-              </a>
-            </div>
-          </section>
         </aside>
       </div>
     </div>
 
-    <footer class="winamp" role="contentinfo" aria-label="Winamp style player">
-      <div class="winamp-left">
-        <button
-          id="music-toggle"
-          type="button"
-          class="winamp-btn"
-          aria-label="Play/Pause"
-        >
-          ▶
-        </button>
-
-        <div class="winamp-eq" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
-      </div>
-
-      <div class="winamp-mid">
-        <div class="winamp-title">WINAMP</div>
-
-        <div class="winamp-marquee" aria-label="Now playing">
-          <div id="music-marquee" class="winamp-marquee-inner">
-            <span class="winamp-marquee-text"
-              >Now Playing: Jean Baptiste Lully (1632-1687) - Marche pour la
-              cérémonie des Turcs.mp3 •</span
-            >
-            <span class="winamp-marquee-text"
-              >Now Playing: Jean Baptiste Lully (1632-1687) - Marche pour la
-              cérémonie des Turcs.mp3 •</span
-            >
-            <span class="winamp-marquee-text"
-              >Now Playing: Jean Baptiste Lully (1632-1687) - Marche pour la
-              cérémonie des Turcs.mp3 •</span
-            >
-          </div>
-        </div>
-
-        <div id="music-status" class="winamp-status" aria-live="polite"></div>
-      </div>
-
-      <div class="winamp-right">
-        <label class="winamp-vol">
-          VOL
-          <input id="music-vol" type="range" min="0" max="100" value="60" />
-        </label>
-      </div>
-    </footer>
-
-    <audio id="bg-audio" preload="metadata" loop autoplay>
-      <source
-        src="./assets/audio/Jean Baptiste Lully (1632-1687) - Marche pour la cérémonie des Turcs.mp3"
-        type="audio/mpeg"
-      />
-    </audio>
-
-    <script src="./js/clock.js" defer></script>
-    <script src="./js/snow.js" defer></script>
-    <script src="./js/music.js" defer></script>
-    <script src="./js/music_persist.js" defer></script>
-    <script src="./js/stats.js" defer></script>
     <script src="./js/admin.js" defer></script>
   </body>
 </html>

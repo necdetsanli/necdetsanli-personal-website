@@ -10,10 +10,15 @@
       content="Necdet Şanlı’s retro 2000s-style personal website: projects, links, and guestbook."
     />
     <meta name="author" content="Necdet Şanlı" />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
 
+    <!-- Intro page should not be indexed; point canonical to the real homepage -->
+    <meta name="robots" content="noindex,follow" />
     <link rel="canonical" href="https://www.necdetsanli.com/home.html" />
+
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="light" />
+
     <link
       rel="sitemap"
       type="application/xml"
@@ -21,56 +26,96 @@
       href="/sitemap.xml"
     />
 
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Necdet Şanlı" />
     <meta property="og:title" content="Necdet Şanlı" />
     <meta
       property="og:description"
-      content="Retro 2000s-style personal website: projects, links, and guestbook."
+      content="Necdet Şanlı’s retro 2000s-style personal website: projects, links, and guestbook."
     />
     <meta property="og:url" content="https://www.necdetsanli.com/home.html" />
     <meta
       property="og:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
     />
-    <meta
-      property="og:image:alt"
-      content="Necdet Şanlı — retro 2000s-style website"
-    />
+    <meta property="og:image:type" content="image/gif" />
+    <meta property="og:image:alt" content="Portrait of Necdet Şanlı" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Necdet Şanlı" />
     <meta
       name="twitter:description"
-      content="Retro 2000s-style personal website: projects, links, and guestbook."
+      content="Necdet Şanlı’s retro 2000s-style personal website: projects, links, and guestbook."
     />
     <meta
       name="twitter:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
+    />
+    <meta name="twitter:image:alt" content="Portrait of Necdet Şanlı" />
+
+    <!-- Security (best served as HTTP headers; meta is a good fallback) -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-dNxLCme02yrO6zwUOkWmYhSnBOw6LO9QM/E4NPKCJ7U='; upgrade-insecure-requests"
     />
     <meta
-      name="twitter:image:alt"
-      content="Necdet Şanlı — retro 2000s-style website"
+      http-equiv="Permissions-Policy"
+      content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
     />
 
+    <!-- Structured Data (external) -->
+    <script type="application/ld+json" src="/assets/ld/person.json"></script>
+
+    <link rel="stylesheet" href="./css/enter.css" />
+
+    <!-- ld:person begin (generated) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Necdet Şanlı",
-        "url": "https://www.necdetsanli.com/home.html",
-        "image": "https://www.necdetsanli.com/assets/gifs/necdet_scroll.png",
-        "email": "mailto:me@necdetsanli.com",
-        "sameAs": [
-          "https://github.com/necdetsanli",
-          "https://www.linkedin.com/in/necdetsanli",
-          "https://www.donotghostme.com"
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.necdetsanli.com/#necdet",
+            "name": "Necdet Şanlı",
+            "url": "https://www.necdetsanli.com/",
+            "image": "https://www.necdetsanli.com/assets/gifs/me_glint.gif",
+            "email": "mailto:me@necdetsanli.com",
+            "sameAs": [
+              "https://github.com/necdetsanli",
+              "https://www.linkedin.com/in/necdetsanli",
+              "https://www.donotghostme.com/"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.necdetsanli.com/#webpage",
+            "url": "https://www.necdetsanli.com/",
+            "name": "Necdet Şanlı",
+            "description": "Necdet Şanlı’s retro 2000s-style personal website: projects, links, and guestbook.",
+            "isPartOf": { "@id": "https://www.necdetsanli.com/#website" },
+            "about": { "@id": "https://www.necdetsanli.com/#necdet" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.necdetsanli.com/#website",
+            "url": "https://www.necdetsanli.com/",
+            "name": "Necdet Şanlı",
+            "inLanguage": "en"
+          }
         ]
       }
     </script>
-
-    <link rel="stylesheet" href="./css/enter.css" />
+    <!-- ld:person end -->
   </head>
 
   <body>
@@ -99,7 +144,6 @@
         ██╔══██║██╔══██║██║     ██╔═██╗ ██╔══╝  ██║  ██║        
         ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██████╔╝        
         ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝         
-                                                                
         </pre>
 
         <div class="boot-title" aria-label="Terminal boot sequence">
@@ -121,7 +165,9 @@
               class="loading-gif"
               src="./assets/gifs/virus_downloading.gif"
               alt="Loading animation (click to enter)"
-              loading="lazy"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
             />
           </a>
         </div>

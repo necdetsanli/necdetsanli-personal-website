@@ -1,10 +1,20 @@
 (() => {
   "use strict";
 
-  const tokenKey = "gb_admin_token_v1";
+  /** @type {string} */
+  const TOKEN_STORAGE_KEY = "gb_admin_token_v1";
+
+  /** @type {readonly string[]} */
+  const ALLOWED_API_ORIGINS = Object.freeze([
+    "https://necdetsanli-guestbook.sanlinecdet97.workers.dev",
+  ]);
+
+  /** @type {number} */
+  const FETCH_TIMEOUT_MS = 10_000;
 
   const bodyEl = document.body;
-  const apiBase = bodyEl instanceof HTMLElement ? bodyEl.dataset.apiBase : null;
+  const apiBaseRaw =
+    bodyEl instanceof HTMLElement ? bodyEl.dataset.apiBase : undefined;
 
   const formEl = document.getElementById("admin-auth");
   const tokenEl = document.getElementById("admin-token");
@@ -17,8 +27,8 @@
   const listStatusEl = document.getElementById("admin-list-status");
   const entriesEl = document.getElementById("admin-entries");
 
+  /** @type {string} */
   let nextCursor = "";
-  let lastMode = "pending"; // future-proof if you later add an "approved" tab
 
   /**
    * @param {HTMLElement | null} el
@@ -31,26 +41,52 @@
   };
 
   /**
+   * @param {unknown} value
    * @returns {string}
    */
-  const getToken = () => {
-    const t = sessionStorage.getItem(tokenKey);
-    return typeof t === "string" ? t : "";
+  const normalizeString = (value) => {
+    return typeof value === "string" ? value.trim() : "";
   };
 
   /**
-   * @param {string} t
+   * Very conservative token validation to avoid weird header/whitespace issues.
+   * Accepts URL-safe/base64url-ish/hex-ish tokens.
+   *
+   * @param {string} raw
+   * @returns {string}
+   */
+  const sanitizeToken = (raw) => {
+    const t = raw.trim();
+    if (t.length < 20) return "";
+    if (t.length > 2048) return "";
+    // Disallow whitespace/control characters
+    if (/[\u0000-\u001F\u007F\s]/u.test(t)) return "";
+    // Allow common safe token chars
+    if (/^[A-Za-z0-9._~\-+=/]+$/u.test(t) === false) return "";
+    return t;
+  };
+
+  /**
+   * @returns {string}
+   */
+  const getToken = () => {
+    const v = sessionStorage.getItem(TOKEN_STORAGE_KEY);
+    return typeof v === "string" ? v : "";
+  };
+
+  /**
+   * @param {string} token
    * @returns {void}
    */
-  const setToken = (t) => {
-    sessionStorage.setItem(tokenKey, t);
+  const setToken = (token) => {
+    sessionStorage.setItem(TOKEN_STORAGE_KEY, token);
   };
 
   /**
    * @returns {void}
    */
   const clearToken = () => {
-    sessionStorage.removeItem(tokenKey);
+    sessionStorage.removeItem(TOKEN_STORAGE_KEY);
   };
 
   /**
@@ -58,8 +94,9 @@
    * @returns {string | null}
    */
   const safeUrl = (value) => {
-    const v = typeof value === "string" ? value.trim() : "";
+    const v = normalizeString(value);
     if (v.length === 0) return null;
+
     try {
       const u = new URL(v);
       if (u.protocol !== "http:" && u.protocol !== "https:") return null;
@@ -71,32 +108,74 @@
   };
 
   /**
+   * @param {unknown} rawBase
+   * @returns {URL | null}
+   */
+  const getApiBaseUrl = (rawBase) => {
+    const b = normalizeString(rawBase);
+    if (b.length < 8) return null;
+
+    try {
+      const u = new URL(b);
+      if (u.protocol !== "https:") return null;
+
+      const origin = u.origin;
+      if (ALLOWED_API_ORIGINS.includes(origin) === false) return null;
+
+      // Ensure base ends with a slash so URL(path, base) behaves predictably.
+      const base = origin.endsWith("/") ? origin : `${origin}/`;
+      return new URL(base);
+    } catch {
+      return null;
+    }
+  };
+
+  const apiBaseUrl = getApiBaseUrl(apiBaseRaw);
+
+  /**
    * @param {string} path
    * @returns {string | null}
    */
   const api = (path) => {
-    if (typeof apiBase !== "string" || apiBase.length < 8) return null;
-    return new URL(path, apiBase).toString();
+    if (apiBaseUrl === null) return null;
+    if (typeof path !== "string" || path.startsWith("/") === false) return null;
+
+    const u = new URL(path, apiBaseUrl);
+    if (ALLOWED_API_ORIGINS.includes(u.origin) === false) return null;
+    return u.toString();
+  };
+
+  /**
+   * @param {Response} res
+   * @returns {Promise<any | null>}
+   */
+  const readJsonSafe = async (res) => {
+    try {
+      return await res.json();
+    } catch {
+      return null;
+    }
   };
 
   /**
    * @param {string} url
-   * @param {RequestInit | undefined} init
+   * @param {RequestInit} init
    * @returns {Promise<Response>}
    */
   const authedFetch = async (url, init) => {
     const t = getToken();
     if (t.length < 20) throw new Error("missing-token");
 
-    const headers = new Headers(
-      init && init.headers ? init.headers : undefined
-    );
+    const headers = new Headers(init.headers ? init.headers : undefined);
     headers.set("authorization", `Bearer ${t}`);
-    headers.set("cache-control", "no-store");
     headers.set("accept", "application/json");
+    headers.set("cache-control", "no-store");
 
     const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 10_000);
+    const timeoutId = window.setTimeout(
+      () => controller.abort(),
+      FETCH_TIMEOUT_MS
+    );
 
     try {
       return await fetch(url, {
@@ -104,12 +183,13 @@
         headers,
         cache: "no-store",
         credentials: "omit",
+        mode: "cors",
         redirect: "error",
         referrerPolicy: "no-referrer",
         signal: controller.signal,
       });
     } finally {
-      window.clearTimeout(timeout);
+      window.clearTimeout(timeoutId);
     }
   };
 
@@ -127,6 +207,28 @@
   };
 
   /**
+   * @param {boolean} isSubmitting
+   * @returns {void}
+   */
+  const setSubmitting = (isSubmitting) => {
+    if (saveEl instanceof HTMLButtonElement)
+      saveEl.disabled = isSubmitting === true;
+    if (tokenEl instanceof HTMLInputElement)
+      tokenEl.disabled = isSubmitting === true;
+  };
+
+  /**
+   * @param {boolean} busy
+   * @param {HTMLButtonElement} approveBtn
+   * @param {HTMLButtonElement} delBtn
+   * @returns {void}
+   */
+  const setRowBusy = (busy, approveBtn, delBtn) => {
+    approveBtn.disabled = busy === true;
+    delBtn.disabled = busy === true;
+  };
+
+  /**
    * @param {any[]} entries
    * @param {boolean} append
    * @returns {void}
@@ -134,9 +236,7 @@
   const renderEntries = (entries, append) => {
     if (entriesEl === null) return;
 
-    if (append === false) {
-      entriesEl.textContent = "";
-    }
+    if (append === false) entriesEl.textContent = "";
 
     if (Array.isArray(entries) === false || entries.length === 0) {
       if (append === false) renderEmpty("No pending entries.");
@@ -155,14 +255,11 @@
 
       const nameSpan = document.createElement("span");
       nameSpan.className = "guestbook-name";
-      nameSpan.textContent =
-        typeof entry.name === "string" && entry.name.trim().length > 0
-          ? entry.name
-          : "Anonymous";
-
+      const name = normalizeString(entry && entry.name);
+      nameSpan.textContent = name.length > 0 ? name : "Anonymous";
       left.appendChild(nameSpan);
 
-      const websiteSafe = safeUrl(entry.website);
+      const websiteSafe = safeUrl(entry && entry.website);
       if (websiteSafe !== null) {
         const sep = document.createTextNode(" ");
         const link = document.createElement("a");
@@ -178,8 +275,7 @@
       const right = document.createElement("div");
       right.className = "guestbook-date";
 
-      const createdAt =
-        typeof entry.createdAt === "string" ? entry.createdAt : "";
+      const createdAt = normalizeString(entry && entry.createdAt);
       const d = createdAt.length > 0 ? new Date(createdAt) : null;
       right.textContent =
         d !== null && Number.isNaN(d.getTime()) === false
@@ -191,7 +287,8 @@
 
       const msg = document.createElement("div");
       msg.className = "guestbook-message";
-      msg.textContent = typeof entry.message === "string" ? entry.message : "";
+      msg.textContent =
+        typeof (entry && entry.message) === "string" ? entry.message : "";
 
       const actions = document.createElement("div");
       actions.className = "gb-admin-actions";
@@ -206,16 +303,7 @@
       delBtn.className = "guestbook-btn";
       delBtn.textContent = "Delete";
 
-      const key = typeof entry.key === "string" ? entry.key : "";
-
-      /**
-       * @param {boolean} busy
-       * @returns {void}
-       */
-      const setBusy = (busy) => {
-        approveBtn.disabled = busy === true;
-        delBtn.disabled = busy === true;
-      };
+      const key = normalizeString(entry && entry.key);
 
       approveBtn.addEventListener("click", async () => {
         if (key.startsWith("pending:") === false) return;
@@ -224,7 +312,7 @@
         if (url === null) return;
 
         try {
-          setBusy(true);
+          setRowBusy(true, approveBtn, delBtn);
           setStatus(listStatusEl, "Approving...");
 
           const res = await authedFetch(url, {
@@ -243,7 +331,7 @@
         } catch {
           setStatus(listStatusEl, "Network/auth error.");
         } finally {
-          setBusy(false);
+          setRowBusy(false, approveBtn, delBtn);
         }
       });
 
@@ -257,7 +345,7 @@
         if (ok !== true) return;
 
         try {
-          setBusy(true);
+          setRowBusy(true, approveBtn, delBtn);
           setStatus(listStatusEl, "Deleting...");
 
           const res = await authedFetch(url, {
@@ -276,7 +364,7 @@
         } catch {
           setStatus(listStatusEl, "Network/auth error.");
         } finally {
-          setBusy(false);
+          setRowBusy(false, approveBtn, delBtn);
         }
       });
 
@@ -298,13 +386,18 @@
   const loadPending = async (reset) => {
     if (entriesEl === null) return;
 
-    const urlBase = api("/admin/pending");
-    if (urlBase === null) {
-      renderEmpty("Missing API base (data-api-base).");
+    if (apiBaseUrl === null) {
+      renderEmpty("Invalid/missing API base (data-api-base).");
+      setStatus(listStatusEl, "");
       return;
     }
 
-    lastMode = "pending";
+    const urlBase = api("/admin/pending");
+    if (urlBase === null) {
+      renderEmpty("Invalid API config.");
+      setStatus(listStatusEl, "");
+      return;
+    }
 
     if (reset === true) {
       nextCursor = "";
@@ -326,7 +419,13 @@
         return;
       }
 
-      const data = await res.json().catch(() => null);
+      if (res.ok === false) {
+        renderEmpty(`Failed to load (${res.status}).`);
+        setStatus(listStatusEl, "");
+        return;
+      }
+
+      const data = await readJsonSafe(res);
       const ok = data !== null && data.ok === true;
       if (ok === false) {
         renderEmpty("Failed to load.");
@@ -345,26 +444,17 @@
     }
   };
 
-  /**
-   * @param {boolean} isSubmitting
-   * @returns {void}
-   */
-  const setSubmitting = (isSubmitting) => {
-    if (saveEl instanceof HTMLButtonElement)
-      saveEl.disabled = isSubmitting === true;
-    if (tokenEl instanceof HTMLInputElement)
-      tokenEl.disabled = isSubmitting === true;
-  };
+  // --- Wire up UI ---
 
   if (formEl !== null) {
     formEl.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       if (tokenEl instanceof HTMLInputElement === false) return;
-      const t = tokenEl.value.trim();
 
+      const t = sanitizeToken(tokenEl.value);
       if (t.length < 20) {
-        setStatus(statusEl, "Token too short.");
+        setStatus(statusEl, "Invalid token.");
         return;
       }
 
@@ -403,10 +493,15 @@
     });
   }
 
-  const existing = getToken();
-  if (tokenEl instanceof HTMLInputElement && existing.length > 0) {
-    tokenEl.value = existing;
+  // Initialize
+  if (tokenEl instanceof HTMLInputElement) {
+    const existing = getToken();
+    if (existing.length > 0) tokenEl.value = existing;
   }
 
-  renderEmpty("Paste GB_ADMIN_TOKEN above.");
+  if (apiBaseUrl === null) {
+    renderEmpty("Invalid/missing API base (data-api-base).");
+  } else {
+    renderEmpty("Paste GB_ADMIN_TOKEN above.");
+  }
 })();

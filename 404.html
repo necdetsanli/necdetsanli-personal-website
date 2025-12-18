@@ -4,11 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>404 • Necdet Şanlı</title>
+    <title>404 | Necdet Şanlı</title>
     <meta name="description" content="Page not found." />
     <meta name="author" content="Necdet Şanlı" />
-    <meta name="robots" content="noindex,nofollow" />
+    <meta name="robots" content="noindex,follow" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="light" />
 
     <link rel="canonical" href="https://www.necdetsanli.com/404.html" />
     <link
@@ -18,26 +21,87 @@
       href="/sitemap.xml"
     />
 
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Necdet Şanlı" />
-    <meta property="og:title" content="404 • Necdet Şanlı" />
+    <meta property="og:title" content="404 | Necdet Şanlı" />
     <meta property="og:description" content="Page not found." />
     <meta property="og:url" content="https://www.necdetsanli.com/404.html" />
     <meta
       property="og:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
     />
+    <meta property="og:image:alt" content="Portrait of Necdet Şanlı" />
+    <meta property="og:image:type" content="image/gif" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="404 • Necdet Şanlı" />
+    <meta name="twitter:title" content="404 | Necdet Şanlı" />
     <meta name="twitter:description" content="Page not found." />
     <meta
       name="twitter:image"
-      content="https://www.necdetsanli.com/assets/gifs/necdet_scroll.png"
+      content="https://www.necdetsanli.com/assets/gifs/me_glint.gif"
+    />
+    <meta name="twitter:image:alt" content="Portrait of Necdet Şanlı" />
+
+    <!-- Security (meta fallback; best as HTTP headers) -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https:; style-src 'self'; script-src 'self' 'sha256-VrzdtHOAvQwk2rXu76j8lKM+rJ7qXqto1hd6EkeUi64='; connect-src 'self' https://api.counterapi.dev; media-src 'self'; font-src 'self' data:; upgrade-insecure-requests; block-all-mixed-content"
+    />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
     />
 
     <link rel="stylesheet" href="./css/styles.css" />
+
+    <!-- ld:person begin (generated) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.necdetsanli.com/#necdet",
+            "name": "Necdet Şanlı",
+            "url": "https://www.necdetsanli.com/",
+            "image": "https://www.necdetsanli.com/assets/gifs/me_glint.gif",
+            "email": "mailto:me@necdetsanli.com",
+            "sameAs": [
+              "https://github.com/necdetsanli",
+              "https://www.linkedin.com/in/necdetsanli",
+              "https://www.donotghostme.com/"
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.necdetsanli.com/404.html#webpage",
+            "url": "https://www.necdetsanli.com/404.html",
+            "name": "404 | Necdet Şanlı",
+            "description": "Page not found.",
+            "isPartOf": { "@id": "https://www.necdetsanli.com/#website" },
+            "about": { "@id": "https://www.necdetsanli.com/#necdet" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.necdetsanli.com/#website",
+            "url": "https://www.necdetsanli.com/",
+            "name": "Necdet Şanlı",
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
+    <!-- ld:person end -->
   </head>
 
   <body>
@@ -301,12 +365,13 @@
             />
           </div>
 
-          <div class="center" style="margin: 10px 0 0 0">
+          <!-- Inline styles removed -->
+          <div class="center notfound-hero">
             <img
+              class="notfound-hero-img"
               src="./assets/gifs/are_you_lost.gif"
               alt="Are you lost?"
               loading="lazy"
-              style="max-width: 100%; height: auto"
             />
           </div>
 
@@ -515,7 +580,7 @@
 
     <audio id="bg-audio" preload="metadata" loop autoplay>
       <source
-        src="./assets/audio/Jean Baptiste Lully (1632-1687) - Marche pour la cérémonie des Turcs.mp3"
+        src="./assets/audio/jean-baptiste-lully-marche-turcs.mp3"
         type="audio/mpeg"
       />
     </audio>
